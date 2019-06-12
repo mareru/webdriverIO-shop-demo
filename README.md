@@ -20,10 +20,7 @@ Now you are ready to write your own features.
 
 - Super simple setup
 - Full integration with [WebdriverIO](http://webdriver.io/)
-- Over 150 predefined steps that cover almost everything you need, you can start writing tests right away
 - Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/)
-- Integration of WebdriverIO's Multiremote functionality
-- Easy to run tests in parallel
 
 # How to write a test
 
