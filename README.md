@@ -18,7 +18,7 @@ Now you are ready to write your own features.
 
 # How to run the test
 
-To run your tests just call on you local machine:
+To run your tests just call on your local machine:
 
 ```sh
 $ yarn run wdio
