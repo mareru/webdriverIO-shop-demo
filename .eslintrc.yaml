@@ -9,6 +9,7 @@ globals:
 
 parserOptions:
   ecmaVersion: 6
+  sourceType: module
 
 root: true
 
@@ -17,11 +18,8 @@ rules:
     - 'error'
     - arrays: 'always-multiline'
       objects: 'always-multiline'
-      imports: 'never'
       exports: 'never'
       functions: 'ignore'
-  global-require: 'off'
-  import/no-extraneous-dependencies: 0
   indent:
     - 'error'
     - 4
@@ -40,9 +38,9 @@ rules:
   require-jsdoc:
     - 'error'
     - require:
-        FunctionDeclaration: true
-        MethodDefinition: true
-        ClassDeclaration: true
+        FunctionDeclaration: false
+        MethodDefinition: false
+        ClassDeclaration: false
   strict: 'off'
   valid-jsdoc:
     - 'error'

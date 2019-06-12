@@ -6,14 +6,11 @@ export default class Page {
 
     get headline ()     { return $('h2'); }
 
-    /**
-     * define or overwrite page methods
-     */
     open (path) {
         browser.url(path);
     }
 
     getPageTitle(){
-      return this.headline.getText();
+        return this.headline.getText();
     }
 }

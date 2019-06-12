@@ -16,12 +16,12 @@ class SecurePage extends Page {
     }
 
     getPageTitle(){
-      return super.getPageTitle();
+        return super.getPageTitle();
     }
 
     getSuccessMessage() {
-      this.successMessage.waitForVisible(3000);
-      return this.successMessage.getText();
+        this.successMessage.waitForVisible(3000);
+        return this.successMessage.getText();
     }
 }
 

@@ -1,9 +1,8 @@
 const wdioConfig = require('./wdio.conf.js');
-const webdriverio = require('webdriverio');
 
 wdioConfig.config.services = [['selenium-grid']];
 
-wdioConfig.config.host= '192.168.99.100';
+wdioConfig.config.host= 'localhost';
 
 wdioConfig.config.capabilities = [{
     browserName: 'chrome',
