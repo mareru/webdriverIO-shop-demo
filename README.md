@@ -16,11 +16,28 @@ Although this project works fine with NPM we recommend to use Yarn (>= 1.0.0) in
 
 Now you are ready to write your own features.
 
+# How to run the test
+
+To run your tests just call on you local machine:
+
+```sh
+$ yarn run wdio
+```
+
+Start the tests with Zalenium (when Zalenium is already running):
+
+```sh
+$ yarn run wdio wdio.zalenium.conf.js
+```
+
+_please note_ The WDIO runner uses the configuration file `wdio.conf.js` by default.
+
+
 ## Features
 
-- Super simple setup
-- Full integration with [WebdriverIO](http://webdriver.io/)
-- Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/)
+- Simple setup
+- Full integration with [WebdriverIO v4](http://v4.webdriver.io/)
+- Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/) or [Zalenium](https://opensource.zalando.com/zalenium/)
 
 # How to write a test
 
@@ -50,22 +67,6 @@ Scenario: Another test
 
 This test opens the browser and navigates them to google.com to check if the title contains the search
 query after doing a search. As you can see, it is pretty simple and understandable for everyone.
-
-# How to run the test
-
-Start the tests with Zalenium (when Zalenium is already running):
-
-```sh
-$ yarn run wdio wdio.zalenium.conf.js
-```
-
-To run your tests just call on you local machine:
-
-```sh
-$ yarn run wdio
-```
-
-_please note_ The WDIO runner uses the configuration file `wdio.conf.js` by default.
 
 # Configurations
 
