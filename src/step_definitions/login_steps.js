@@ -20,6 +20,7 @@ defineSupportCode(function ({Given, Then, When}) {
     });
 
     Then(/^I see the a message with the text "([^"]*)"$/, function (message) {
+        // for more information on assertions see: https://www.chaijs.com/api/bdd/
         securePage.getSuccessMessage().should.contain(message);
     });
 });
