@@ -6,7 +6,7 @@ Cucumber Boilerplate
 Boilerplate project to run WebdriverIO tests with [Cucumber](https://cucumber.io/) which automates the [Heroku app](http://the-internet.herokuapp.com/)
 ## Requirements
 
-- Node version 6 or higher
+- Supported Node version 6-10 (v12 is currently not supported)
 
 Although this project works fine with NPM we recommend to use Yarn (>= 1.0.0) instead,  due to its speed & solid dependency locking mechanism. To keep things simple we use yarn in this guide, but feel free to replace this with NPM if that is what you are using.
 
