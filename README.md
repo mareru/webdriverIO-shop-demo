@@ -32,7 +32,7 @@ $ yarn run wdio wdio.zalenium.conf.js
 
 _please note_ The WDIO runner uses the configuration file `wdio.conf.js` by default.
 
-##Jenkins 
+## Jenkins 
 A sample jenkins job is configured on our [qalabs jenkins](http://qalabs.ecx.local:8080/job/WebdriverIO/) that can be used as a reference.
 Job also contains a sample cucumber report with [Allure](http://allure.qatools.ru/)
 
@@ -88,20 +88,23 @@ wdio.<ENVIRONMENT>.conf.js
 
 Now you can create a specific config for your pre-deploy tests:
 
-__wdio.STAGING.conf.js__
+__wdio.zalenium.conf.js__
 ```js
-var config = require('./wdio.conf.js').config;
+const wdioConfig = require('./wdio.conf.js');
 
-config.baseUrl = 'http://staging.example.com'
+wdioConfig.config.services = [['selenium-grid']];
 
-exports.config = config;
+wdioConfig.config.capabilities = [{
+    browserName: 'chrome',
+    name: 'webdriver',
+}];
 ```
 
 Your environment-specific config file will get merged into the default config file and overwrites the values you set.
 To run a test in a specific environment just add the desired configuration file as the first parameter:
 
 ```sh
-$ yarn run wdio wdio.STAGING.conf.js
+$ yarn run wdio wdio.zalenium.conf.js
 ```
 
 # Running single feature
@@ -141,23 +144,4 @@ Feature: ...
 // only skip a single scenario
 @Pending
 Scenario: ...
-```
-
-# Comments
-
-You can add additional descriptive comments in your feature files.
-
-```gherkin
-###
-  This is a
-  block comment
-###
-Feature: As a bystander
-    I can watch bottles falling from a wall
-    So that I can be mildly amused
-
-# This is a single line comment
-Scenario: check if username is present
-    Given I login as "roboter" with password "test123"
-    Then the username "roboter" should be present in the header
 ```
