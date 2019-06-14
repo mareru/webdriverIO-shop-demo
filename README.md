@@ -36,6 +36,10 @@ _please note_ The WDIO runner uses the configuration file `wdio.conf.js` by defa
 * A sample jenkins job is configured on our [qalabs jenkins](http://qalabs.ecx.local:8080/job/WebdriverIO/) that can be used as a reference.
 * Job also contains a sample cucumber report with [Allure](http://allure.qatools.ru/)
 * You need to have Zalenium running, so just follow the instruction on the offical [Zalenium page](https://opensource.zalando.com/zalenium/).Setting up Zalenium is easy once you have docker installed.
+
+## IntelliJ
+Install the cucumber.js plugin to have autodection for cucumber steps.
+
 ## Features
 
 - Simple setup
