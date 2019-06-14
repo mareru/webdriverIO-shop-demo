@@ -44,6 +44,7 @@ Install the cucumber.js plugin to have autodection for cucumber steps.
 
 - Simple setup
 - Full integration with [WebdriverIO v4](http://v4.webdriver.io/)
+- Parallelization 
 - Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/) or [Zalenium](https://opensource.zalando.com/zalenium/)
 
 # How to write a test
