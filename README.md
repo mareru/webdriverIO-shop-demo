@@ -35,7 +35,7 @@ _please note_ The WDIO runner uses the configuration file `wdio.conf.js` by defa
 ## Jenkins 
 A sample jenkins job is configured on our [qalabs jenkins](http://qalabs.ecx.local:8080/job/WebdriverIO/) that can be used as a reference.
 Job also contains a sample cucumber report with [Allure](http://allure.qatools.ru/)
-
+You need to have Zalenium running, so just follow the instruction on the offical [Zalenium page](https://opensource.zalando.com/zalenium/).Setting up Zalenium is easy once you have docker installed.
 ## Features
 
 - Simple setup
@@ -50,26 +50,19 @@ that means that you write down what's supposed to happen in a real language. All
 directory. They should demonstrate, how tests could look like. Just create a new file and write your first
 test.
 
-__myFirstTest.feature__
+__login.feature__
 ```gherkin
-Feature:
-    In order to keep my product stable
-    As a developer or product manager
-    I want to make sure that everything works as expected
-
-Scenario: Check title of website after search
-    Given I open the url "http://google.com"
-    When I set "WebdriverIO" to the inputfield "#lst-ib"
-    And I press "Enter"
-    Then I expect that the title is "WebdriverIO - Google Search"
-
-Scenario: Another test
-    Given ...
+Feature: Customer is able to login
+Login
+    Scenario: Customer is able to login with correct credentials
+    Given I am on the login page
+    When I login with username "tomsmith" and password "SuperSecretPassword!"
+    Then I am located on the secure page
+        And I see the a message with the text "You logged into a secure area!"
 
 ```
 
-This test opens the browser and navigates them to google.com to check if the title contains the search
-query after doing a search. As you can see, it is pretty simple and understandable for everyone.
+This test opens the browser and navigates them to the-internet.herokuapp.com to verify if the login is working.
 
 # Configurations
 
