@@ -6,7 +6,7 @@ Cucumber Boilerplate
 Boilerplate project to run WebdriverIO tests with [Cucumber](https://cucumber.io/) which automates the [Heroku app](http://the-internet.herokuapp.com/)
 ## Requirements
 
-- Supported Node version 6-10 LTS Version (v12 is currently not supported)
+- Node version 6 or higher
 
 Although this project works fine with NPM we recommend to use Yarn (>= 1.0.0) instead,  due to its speed & solid dependency locking mechanism. To keep things simple we use yarn in this guide, but feel free to replace this with NPM if that is what you are using.
 
@@ -32,19 +32,11 @@ $ yarn run wdio wdio.zalenium.conf.js
 
 _please note_ The WDIO runner uses the configuration file `wdio.conf.js` by default.
 
-## Jenkins 
-* A sample jenkins job is configured on our [qalabs jenkins](http://qalabs.ecx.local:8080/job/WebdriverIO/) that can be used as a reference.
-* Job also contains a sample cucumber report with [Allure](http://allure.qatools.ru/)
-* You need to have Zalenium running, so just follow the instruction on the offical [Zalenium page](https://opensource.zalando.com/zalenium/).Setting up Zalenium is easy once you have docker installed.
-
-## IntelliJ
-Install the cucumber.js plugin to have autodection for cucumber steps.
 
 ## Features
 
 - Simple setup
 - Full integration with [WebdriverIO v4](http://v4.webdriver.io/)
-- Parallelization 
 - Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/) or [Zalenium](https://opensource.zalando.com/zalenium/)
 
 # How to write a test
@@ -55,19 +47,26 @@ that means that you write down what's supposed to happen in a real language. All
 directory. They should demonstrate, how tests could look like. Just create a new file and write your first
 test.
 
-__login.feature__
+__myFirstTest.feature__
 ```gherkin
-Feature: Customer is able to login
-Login
-    Scenario: Customer is able to login with correct credentials
-    Given I am on the login page
-    When I login with username "tomsmith" and password "SuperSecretPassword!"
-    Then I am located on the secure page
-        And I see the a message with the text "You logged into a secure area!"
+Feature:
+    In order to keep my product stable
+    As a developer or product manager
+    I want to make sure that everything works as expected
+
+Scenario: Check title of website after search
+    Given I open the url "http://google.com"
+    When I set "WebdriverIO" to the inputfield "#lst-ib"
+    And I press "Enter"
+    Then I expect that the title is "WebdriverIO - Google Search"
+
+Scenario: Another test
+    Given ...
 
 ```
 
-This test opens the browser and navigates them to the-internet.herokuapp.com to verify if the login is working.
+This test opens the browser and navigates them to google.com to check if the title contains the search
+query after doing a search. As you can see, it is pretty simple and understandable for everyone.
 
 # Configurations
 
@@ -86,23 +85,20 @@ wdio.<ENVIRONMENT>.conf.js
 
 Now you can create a specific config for your pre-deploy tests:
 
-__wdio.zalenium.conf.js__
+__wdio.STAGING.conf.js__
 ```js
-const wdioConfig = require('./wdio.conf.js');
+var config = require('./wdio.conf.js').config;
 
-wdioConfig.config.services = [['selenium-grid']];
+config.baseUrl = 'http://staging.example.com'
 
-wdioConfig.config.capabilities = [{
-    browserName: 'chrome',
-    name: 'webdriver',
-}];
+exports.config = config;
 ```
 
 Your environment-specific config file will get merged into the default config file and overwrites the values you set.
 To run a test in a specific environment just add the desired configuration file as the first parameter:
 
 ```sh
-$ yarn run wdio wdio.zalenium.conf.js
+$ yarn run wdio wdio.STAGING.conf.js
 ```
 
 # Running single feature
@@ -142,4 +138,23 @@ Feature: ...
 // only skip a single scenario
 @Pending
 Scenario: ...
+```
+
+# Comments
+
+You can add additional descriptive comments in your feature files.
+
+```gherkin
+###
+  This is a
+  block comment
+###
+Feature: As a bystander
+    I can watch bottles falling from a wall
+    So that I can be mildly amused
+
+# This is a single line comment
+Scenario: check if username is present
+    Given I login as "roboter" with password "test123"
+    Then the username "roboter" should be present in the header
 ```
