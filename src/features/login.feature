@@ -5,4 +5,3 @@ Login
     When I login with username "tomsmith" and password "SuperSecretPassword!"
     Then I am located on the secure page
         And I see the a message with the text "You logged into a secure area!"
-       
