@@ -39,7 +39,6 @@ try
         }
         echo "====== Checking ${env.BRANCH_NAME} ======"
         build job: 'WebdriverIO', parameters: [listGitBranches(name: 'gitbranch', value: "${env.BRANCH_NAME}")]
-        httpRequest url:"http://build-ecx-sitecore:4444/dashboard/cleanup?action=doCleanupAll", timeout: 120
       }
     }
   }
