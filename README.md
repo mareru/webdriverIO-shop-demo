@@ -39,6 +39,10 @@ _please note_ The WDIO runner uses the configuration file `wdio.conf.js` by defa
 - Full integration with [WebdriverIO v4](http://v4.webdriver.io/)
 - Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/) or [Zalenium](https://opensource.zalando.com/zalenium/)
 
+## Jenkins setup
+* Sample Jenkins that runs the project can be found here: http://qalabs.ecx.local:8080/job/WebdriverIO/
+* Zalenium reports of those tests: http://build-ecx-sitecore:4444/dashboard/
+
 # How to write a test
 
 Tests are written in [Gherkin syntax](https://cucumber.io/docs/reference)
@@ -49,24 +53,15 @@ test.
 
 __myFirstTest.feature__
 ```gherkin
-Feature:
-    In order to keep my product stable
-    As a developer or product manager
-    I want to make sure that everything works as expected
-
-Scenario: Check title of website after search
-    Given I open the url "http://google.com"
-    When I set "WebdriverIO" to the inputfield "#lst-ib"
-    And I press "Enter"
-    Then I expect that the title is "WebdriverIO - Google Search"
-
-Scenario: Another test
-    Given ...
+Feature: Customer is able to login
+Login
+    Scenario: Customer is able to login with correct credentials
+    Given I am on the login page
+    When I login with username "tomsmith" and password "SuperSecretPassword!"
+    Then I am located on the secure page
+        And I see the a message with the text "You logged into a secure area!"
 
 ```
-
-This test opens the browser and navigates them to google.com to check if the title contains the search
-query after doing a search. As you can see, it is pretty simple and understandable for everyone.
 
 # Configurations
 
@@ -92,13 +87,23 @@ var config = require('./wdio.conf.js').config;
 config.baseUrl = 'http://staging.example.com'
 
 exports.config = config;
-```
-
+``` 
 Your environment-specific config file will get merged into the default config file and overwrites the values you set.
 To run a test in a specific environment just add the desired configuration file as the first parameter:
 
 ```sh
 $ yarn run wdio wdio.STAGING.conf.js
+```
+
+You can also run your tests on *Zalenium* (works like a Selenium Grid), just start the tests with:
+```sh
+$ yarn run wdio wdio.zalenium.conf.js
+```
+In case your Zalenium url is not _'localhost'_ change the value to the desired url:
+__wdio.zalenium.conf.js__
+```js
+//will configure it to localhost:4444/wd/hub
+wdioConfig.config.host= 'localhost';
 ```
 
 # Running single feature
@@ -138,23 +143,4 @@ Feature: ...
 // only skip a single scenario
 @Pending
 Scenario: ...
-```
-
-# Comments
-
-You can add additional descriptive comments in your feature files.
-
-```gherkin
-###
-  This is a
-  block comment
-###
-Feature: As a bystander
-    I can watch bottles falling from a wall
-    So that I can be mildly amused
-
-# This is a single line comment
-Scenario: check if username is present
-    Given I login as "roboter" with password "test123"
-    Then the username "roboter" should be present in the header
 ```
