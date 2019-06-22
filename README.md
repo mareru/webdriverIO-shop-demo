@@ -110,7 +110,7 @@ wdioConfig.config.host= 'localhost';
 Sometimes it's useful to only execute a single feature file, to do so use the following command:
 
 ```sh
-$ yarn run wdio -- --spec ./test/features/select.feature
+$ yarn run wdio -- --spec ./src/features/login.feature
 ```
 
 
