@@ -11,13 +11,15 @@ wdioConfig.config.capabilities = [{
 
 wdioConfig.config.beforeSession = [
     function beforeSession(config, capabilities, specs) {
-        capabilities.name = specs && specs[0].split('/').pop() || undefined;
+        let name = specs[0].split('\\').pop();
+        name = name.split('/').pop()
+        capabilities.name = specs && name || undefined;
     },
 ];
 
 wdioConfig.config.afterStep = [
     function afterStep(stepResult) {
-        if(stepResult.status == false){
+        if(stepResult.status === false){
             browser.setCookie({name: 'zaleniumTestPassed', value: 'false'});
         }
     },
