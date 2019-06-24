@@ -3,7 +3,9 @@ Cucumber Boilerplate
 
 ***
 
-Boilerplate project to run WebdriverIO tests with [Cucumber](https://cucumber.io/) which automates the [Heroku app](http://the-internet.herokuapp.com/)
+Boilerplate project to run WebdriverIO tests with [Cucumber](https://cucumber.io/) which automates the [Heroku app](http://qalabs.ecx.local).
+
+**Keep in mind: the Heroku app is not accessible to the public, so make sure that your are connected to our internal network (VPN).** 
 ## Requirements
 
 - Node version 6 or higher
@@ -38,10 +40,14 @@ _please note_ The WDIO runner uses the configuration file `wdio.conf.js` by defa
 - Simple setup
 - Full integration with [WebdriverIO v4](http://v4.webdriver.io/)
 - Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/) or [Zalenium](https://opensource.zalando.com/zalenium/)
+- Parallelization
 
 ## Jenkins setup
 * Sample Jenkins that runs the project can be found here: http://qalabs.ecx.local:8080/job/WebdriverIO/
 * Zalenium reports of those tests: http://build-ecx-sitecore:4444/dashboard/
+
+## Parallelization
+5 tests will run simultaneously by default. To change that just adjust the _maxInstances_ properties in the **wdio.conf.js**. 
 
 # How to write a test
 
@@ -60,7 +66,6 @@ Login
     When I login with username "tomsmith" and password "SuperSecretPassword!"
     Then I am located on the secure page
         And I see the a message with the text "You logged into a secure area!"
-
 ```
 
 # Configurations
@@ -110,7 +115,7 @@ wdioConfig.config.host= 'localhost';
 Sometimes it's useful to only execute a single feature file, to do so use the following command:
 
 ```sh
-$ yarn run wdio -- --spec ./test/features/select.feature
+$ yarn run wdio -- --spec ./src/features/login.feature
 ```
 
 
