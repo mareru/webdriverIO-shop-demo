@@ -44,7 +44,7 @@ _please note_ The WDIO runner uses the configuration file `wdio.conf.js` by defa
 
 ## Jenkins setup
 * Sample Jenkins that runs the project can be found here: http://qalabs.ecx.local:8080/job/WebdriverIO/
-** Also includes a sample [Allure](http://allure.qatools.ru/) report: http://qalabs.ecx.local:8080/job/WebdriverIO/allure/#
+* Also includes a sample [Allure](http://allure.qatools.ru/) report for Jenkins: http://qalabs.ecx.local:8080/job/WebdriverIO/allure/#
 * Zalenium reports of those tests: http://build-ecx-sitecore:4444/dashboard/
 
 ## Parallelization
