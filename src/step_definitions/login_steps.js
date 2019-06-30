@@ -9,9 +9,9 @@ defineSupportCode(function ({Given, Then, When}) {
         loginPage.getPageTitle().should.equal('Login Page');
     });
 
-    When(/^I login with username "([^"]*)" and password "([^"]*)"$/, function (username, password) {
+    When(/^I login with username "([^"]*)"$/, function (username) {
         loginPage.typeUsername(username);
-        loginPage.typePassword(password);
+        loginPage.typePassword(testdata.users.valid.password);
         loginPage.clickOnLoginButton();
     });
 

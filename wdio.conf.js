@@ -199,6 +199,7 @@ exports.config = {
         global.expect = chai.expect;
         global.assert = chai.assert;
         global.should = chai.should();
+        global.testdata = require('./testData');
     },
     //
     // Hook that gets executed before the suite starts
