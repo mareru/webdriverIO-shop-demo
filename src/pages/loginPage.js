@@ -2,14 +2,20 @@ import Page from './page';
 
 class LoginPage extends Page {
     /**
-    * define elements
-    */
+     * define elements
+     */
 
-    get usernameField() { return $('#username'); }
+    get usernameField() {
+        return $('#username');
+    }
 
-    get passwordField() { return $('#password'); }
+    get passwordField() {
+        return $('#password');
+    }
 
-    get loginButton() { return $('button[type="submit"]'); }
+    get loginButton() {
+        return $('button[type="submit"]');
+    }
 
     /**
      * define or overwrite page methods

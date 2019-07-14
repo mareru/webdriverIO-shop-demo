@@ -2,11 +2,15 @@ import Page from './page';
 
 class HoverPage extends Page {
     /**
-    * define elements
-    */
-    get userImages() { return $$('[alt="User Avatar"]'); }
+     * define elements
+     */
+    get userImages() {
+        return $$('[alt="User Avatar"]');
+    }
 
-    get usernameFields() { return $$('h5'); }
+    get usernameFields() {
+        return $$('h5');
+    }
 
     /**
      * define or overwrite page methods

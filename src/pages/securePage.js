@@ -3,10 +3,12 @@ import Page from './page';
 class SecurePage extends Page {
 
     /**
-    * define elements
-    */
+     * define elements
+     */
 
-    get successMessage()     { return $('#flash.success'); }
+    get successMessage() {
+        return $('#flash.success');
+    }
 
     /**
      * define or overwrite page methods
@@ -15,7 +17,7 @@ class SecurePage extends Page {
         super.open("/login");       //this will append `loginpage` to the baseUrl to form complete URL
     }
 
-    getPageTitle(){
+    getPageTitle() {
         return super.getPageTitle();
     }
 

@@ -2,9 +2,11 @@ import Page from './page';
 
 class WysiwygPage extends Page {
     /**
-    * define elements
-    */
-    get iframeTextField() { return $('#tinymce'); }
+     * define elements
+     */
+    get iframeTextField() {
+        return $('#tinymce');
+    }
 
     /**
      * define or overwrite page methods

@@ -2,9 +2,11 @@ import Page from './page';
 
 class CheckboxPage extends Page {
     /**
-    * define elements
-    */
-    get checkboxElements() { return $$('#checkboxes input'); }
+     * define elements
+     */
+    get checkboxElements() {
+        return $$('#checkboxes input');
+    }
 
     /**
      * define or overwrite page methods
@@ -15,12 +17,12 @@ class CheckboxPage extends Page {
     }
 
     clickOnDesiredCheckbox(order) {
-        this.checkboxElements[order-1].click();
+        this.checkboxElements[order - 1].click();
     }
 
     isCheckboxSelected(order) {
         //return true if element is selected
-        return this.checkboxElements[order-1].isSelected();
+        return this.checkboxElements[order - 1].isSelected();
     }
 }
 

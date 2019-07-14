@@ -2,9 +2,11 @@ import Page from './page';
 
 class DropDownPage extends Page {
     /**
-    * define elements
-    */
-    get dropDownElement() { return $('#dropdown'); }
+     * define elements
+     */
+    get dropDownElement() {
+        return $('#dropdown');
+    }
 
     /**
      * define or overwrite page methods
