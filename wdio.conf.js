@@ -1,3 +1,5 @@
+const path = require('path');
+
 exports.config = {
     //
     // ==================
@@ -130,10 +132,8 @@ exports.config = {
     cucumberOpts: {
         // <boolean> show full backtrace for errors
         backtrace: false,
-        // <string[]> filetype:compiler used for processing required features
-        compiler: [
-            'js:babel-register',
-        ],
+        // <string[]> module used for processing required features
+        requireModule: ['@babel/register'],
         // <boolean< Treat ambiguous definitions as errors
         failAmbiguousDefinitions: true,
         // <boolean> invoke formatters without executing steps

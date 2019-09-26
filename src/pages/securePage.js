@@ -22,7 +22,7 @@ class SecurePage extends Page {
     }
 
     getSuccessMessage() {
-        this.successMessage.waitForVisible(3000);
+        this.successMessage.waitForDisplayed(3000);
         return this.successMessage.getText();
     }
 }

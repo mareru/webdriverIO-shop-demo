@@ -14,14 +14,14 @@ class HoverPage extends Page {
 
     /**
      * define or overwrite page methods
-     * Which browser manipulation commands - like for instance $("#someId).click() - are available see: http://v4.webdriver.io/api.html
+     * Which browser manipulation commands - like for instance $("#someId).click() - are available see: http://webdriver.io/api.html
      */
     open() {
         super.open('/hovers');
     }
 
     hoverOverUserImage(order) {
-        this.userImages[order].moveToObject();
+        this.userImages[order].moveTo();
     }
 
     usernameField(order) {

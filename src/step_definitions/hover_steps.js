@@ -13,6 +13,6 @@ When(/^I hover over image (\d+)$/, function (order) {
 });
 Then(/^I am able to see the username "([^"]*)"$/, function (username) {
     // for more information on assertions see: https://www.chaijs.com/api/bdd/
-    hoverpage.usernameField(number).isVisible().should.be.true;
+    hoverpage.usernameField(number).isDisplayed().should.be.true;
     hoverpage.usernameField(number).getText().should.contain(username);
 });

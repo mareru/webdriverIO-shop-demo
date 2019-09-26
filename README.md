@@ -38,7 +38,7 @@ _please note_ The WDIO runner uses the configuration file `wdio.conf.js` by defa
 ## Features
 
 - Simple setup
-- Full integration with [WebdriverIO v4](http://v4.webdriver.io/)
+- Full integration with [WebdriverIO](http://webdriver.io/)
 - Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/) or [Zalenium](https://opensource.zalando.com/zalenium/)
 - Parallelization
 
