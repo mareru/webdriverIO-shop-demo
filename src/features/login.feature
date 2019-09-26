@@ -1,3 +1,4 @@
+@Smoke
 Feature: Customer is able to login
 Login
     Scenario: Customer is able to login with correct credentials

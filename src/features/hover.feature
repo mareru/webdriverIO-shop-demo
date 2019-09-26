@@ -1,3 +1,4 @@
+@Smoke
 Feature: Customer is able to hover
 Hover
     Scenario Outline:Customer is able to hover

@@ -116,7 +116,7 @@ wdioConfig.config.host= 'localhost';
 Sometimes it's useful to only execute a single feature file, to do so use the following command:
 
 ```sh
-$ yarn run wdio -- --spec ./src/features/login.feature
+$ yarn run wdio --spec ./src/features/login.feature
 ```
 
 
@@ -132,7 +132,7 @@ Feature: ...
 To run only the tests with specific tag(s) use the `--cucumberOpts.tagExpression=` parameter like so:
 
 ```sh
-$ yarn run wdio -- --cucumberOpts.tagExpression='@Tag or @AnotherTag'
+$ yarn run wdio --cucumberOpts.tagExpression='@Tag or @AnotherTag'
 ```
 
 For more tag options please see the [Cucumber.js documentation](https://docs.cucumber.io/tag-expressions/)
