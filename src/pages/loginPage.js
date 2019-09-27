@@ -2,18 +2,24 @@ import Page from './page';
 
 class LoginPage extends Page {
     /**
-    * define elements
-    */
+     * define elements
+     */
 
-    get usernameField() { return $('#username'); }
+    get usernameField() {
+        return $('#username');
+    }
 
-    get passwordField() { return $('#password'); }
+    get passwordField() {
+        return $('#password');
+    }
 
-    get loginButton() { return $('button[type="submit"]'); }
+    get loginButton() {
+        return $('button[type="submit"]');
+    }
 
     /**
      * define or overwrite page methods
-     * Which browser manipulation commands - like for instance $("#someId).click() - are available see: http://v4.webdriver.io/api.html
+     * Which browser manipulation commands - like for instance $("#someId).click() - are available see: http://webdriver.io/api.html
      */
     open() {
         super.open('/login');
