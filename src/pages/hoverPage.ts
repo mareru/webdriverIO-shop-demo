@@ -20,11 +20,11 @@ class HoverPage extends Page {
         super.open('/hovers');
     }
 
-    hoverOverUserImage(order) {
+    hoverOverUserImage(order: number) {
         this.userImages[order].moveTo();
     }
 
-    usernameField(order) {
+    usernameField(order: number) {
         return this.usernameFields[order];
     }
 }

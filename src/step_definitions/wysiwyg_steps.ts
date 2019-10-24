@@ -1,4 +1,5 @@
 import wysiwygPage from "../pages/wysiwygPage";
+import {expect} from 'chai';
 
 import {Given, Then, When} from 'cucumber';
 
@@ -10,5 +11,5 @@ When(/^I enter "([^"]*)" in the editor$/, function (text) {
 });
 Then(/^I see the text "([^"]*)" in the WYSIWYG Editor$/, function (text) {
     // for more information on assertions see: https://www.chaijs.com/api/bdd/
-    wysiwygPage.iframeTextField.getText().should.contain(text);
+    expect(wysiwygPage.iframeTextField.getText()).to.contain(text);
 });

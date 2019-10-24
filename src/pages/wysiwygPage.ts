@@ -20,10 +20,10 @@ class WysiwygPage extends Page {
         return super.getPageTitle();
     }
 
-    enterTextInEditor(text) {
+    enterTextInEditor(text: string) {
         //Text is in an iframe, first switch to that iframe
         // you can use here the browser object
-        browser.switchToFrame('mce_0_ifr');
+        browser.switchToFrame($('#mce_0_ifr'));
         //Enter text
         this.iframeTextField.waitForExist(4000);
         this.iframeTextField.setValue(text);

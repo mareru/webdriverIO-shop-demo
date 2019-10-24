@@ -16,7 +16,7 @@ class DropDownPage extends Page {
         super.open('/dropdown');
     }
 
-    selectDropDownElement(value) {
+    selectDropDownElement(value: string) {
         this.dropDownElement.selectByVisibleText(value);
     }
 }
