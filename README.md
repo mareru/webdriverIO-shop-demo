@@ -14,8 +14,19 @@ npm install
 npm test
 ```
 
+## Running test by annotation in the feature files
+
+Runs all feature file which contain `@Smoke`
+``npm run test --suite @Smoke``
+
 ## Visual Studio Code project setup
 In your [Visual Studio Code](https://code.visualstudio.com/) download the extension *Cucumber (Gherkin) Full support* and restart your IDE. Aferwards, you should be able to navigate from your feature files to your steps by clicking on the Given/When/Then.
+
+## Jenkins setup
+* Sample Jenkins that runs the project can be found here: http://qalabs.ecx.local:8080/job/WebdriverIO/
+* Also includes a sample Allure report for Jenkins: http://qalabs.ecx.local:8080/job/WebdriverIO/allure/#
+* Zalenium reports of those tests: http://build-ecx-sitecore:4444/dashboard/
+
 
 ## Page Objects
 
