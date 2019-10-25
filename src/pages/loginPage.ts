@@ -29,11 +29,11 @@ class LoginPage extends Page {
         return super.getPageTitle();
     }
 
-    typeUsername(username) {
+    typeUsername(username: string) {
         this.usernameField.setValue(username);
     }
 
-    typePassword(password) {
+    typePassword(password: string) {
         this.passwordField.setValue(password);
     }
 

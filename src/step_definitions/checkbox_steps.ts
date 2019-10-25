@@ -1,4 +1,5 @@
 import checkboxPage from "../pages/checkboxPage";
+import {expect} from 'chai';
 import {Given, Then, When} from 'cucumber';
 
 Given(/^I am on the checkbox page$/, function () {
@@ -6,7 +7,7 @@ Given(/^I am on the checkbox page$/, function () {
 });
 
 Given(/^the checkbox is not selected$/, function () {
-    checkboxPage.isCheckboxSelected(1).should.be.false;
+    expect(checkboxPage.isCheckboxSelected(1)).to.be.false;
 });
 
 When(/^I click on the first checkbox$/, function () {
@@ -14,5 +15,5 @@ When(/^I click on the first checkbox$/, function () {
 });
 
 Then(/^the checkbox is marked as checked$/, function () {
-    checkboxPage.isCheckboxSelected(1).should.be.true;
+    expect(checkboxPage.isCheckboxSelected(1)).to.be.true;
 });

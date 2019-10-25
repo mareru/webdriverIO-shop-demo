@@ -1,152 +1,138 @@
-Cucumber Boilerplate
-====================
+# WebdriverIO_v5_TypeScript
 
-***
+This is a boilerplate project that uses WebdriverIO v5 and TypeScript v3. This project is useful not only as an example of WebdriverIO v5 and TypeScript playing nicely together, but it includes examples of the PageObject pattern and some practical examples for using WebdriverIO to build an automated test suite with Cucumber & Chai.
 
-Boilerplate project to run WebdriverIO tests with [Cucumber](https://cucumber.io/) which automates the [Heroku app](http://qalabs.ecx.local).
+# Features
+* Simple setup
+* Full integration with WebdriverIO
+* Easy integration with cloud services like Sauce Labs or Zalenium
+* Parallelization
 
-**Keep in mind: the Heroku app is not accessible to the public, so make sure that your are connected to our internal network (VPN).** 
-## Requirements
-
-- Node version 6 or higher
-
-Although this project works fine with NPM we recommend to use Yarn (>= 1.0.0) instead,  due to its speed & solid dependency locking mechanism. To keep things simple we use yarn in this guide, but feel free to replace this with NPM if that is what you are using.
-
-## Quick start
-
-1. Install the dependencies (`yarn install`)
-
-Now you are ready to write your own features.
-
-# How to run the test
-
-To run your tests just call on your local machine:
-
-```sh
-$ yarn run wdio
+## Getting Started
+```
+npm install
+npm test
 ```
 
-Start the tests with Zalenium (when Zalenium is already running):
+## Running test by annotation in the feature files
 
-```sh
-$ yarn run wdio wdio.zalenium.conf.js
-```
+Runs all feature file which contain `@Smoke`
+``npm run test --suite @Smoke``
 
-_please note_ The WDIO runner uses the configuration file `wdio.conf.js` by default.
-
-
-## Features
-
-- Simple setup
-- Full integration with [WebdriverIO](http://webdriver.io/)
-- Easy integration with cloud services like [Sauce Labs](https://saucelabs.com/) or [Zalenium](https://opensource.zalando.com/zalenium/)
-- Parallelization
+## Visual Studio Code project setup
+In your [Visual Studio Code](https://code.visualstudio.com/) download the extension *Cucumber (Gherkin) Full support* and restart your IDE. Aferwards, you should be able to navigate from your feature files to your steps by clicking on the Given/When/Then.
 
 ## Jenkins setup
 * Sample Jenkins that runs the project can be found here: http://qalabs.ecx.local:8080/job/WebdriverIO/
-* Also includes a sample [Allure](http://allure.qatools.ru/) report for Jenkins: http://qalabs.ecx.local:8080/job/WebdriverIO/allure/#
+* Also includes a sample Allure report for Jenkins: http://qalabs.ecx.local:8080/job/WebdriverIO/allure/#
 * Zalenium reports of those tests: http://build-ecx-sitecore:4444/dashboard/
 
-## Parallelization
-5 tests will run simultaneously by default. To change that just adjust the _maxInstances_ properties in the **wdio.conf.js**. 
 
-# How to write a test
+## Page Objects
 
-Tests are written in [Gherkin syntax](https://cucumber.io/docs/reference)
-that means that you write down what's supposed to happen in a real language. All test files are located in
-`./src/features/*` and have the file ending `.feature`. You will already find some test files in that
-directory. They should demonstrate, how tests could look like. Just create a new file and write your first
-test.
+[Page Objects](https://martinfowler.com/bliki/PageObject.html) are a really nifty abstraction for the UI elements that you interact with in your tests. You can create simple getter functions for each element that you need to access. And optionally you can create convenience methods like `loginWithCredentials()` that allow you to write more concise tests. 
 
-__myFirstTest.feature__
-```gherkin
+##### `src/pages/LoginPage.ts`
+
+```typescript
+import Page from './page';
+
+class LoginPage extends Page {
+    /**
+     * define elements
+     */
+
+    get usernameField() {
+        return $('#username');
+    }
+
+    get passwordField() {
+        return $('#password');
+    }
+
+    get loginButton() {
+        return $('button[type="submit"]');
+    }
+
+    /**
+     * define or overwrite page methods
+     * Which browser manipulation commands - like for instance $("#someId).click() - are available see: http://webdriver.io/api.html
+     */
+    open() {
+        super.open('/login');
+    }
+
+    getPageTitle() {
+        return super.getPageTitle();
+    }
+
+    typeUsername(username: string) {
+        this.usernameField.setValue(username);
+    }
+
+    typePassword(password: string) {
+        this.passwordField.setValue(password);
+    }
+
+    clickOnLoginButton() {
+        this.loginButton.click();
+    }
+}
+
+export default new LoginPage();
+```
+
+##### `step_definitions/login_steps.ts` => pages are used in steps
+
+
+```typescript
+Given(/^I am on the login page$/, function () {
+    loginPage.open();
+    expect(loginPage.getPageTitle()).to.contain('Login Page');
+});
+
+When(/^I login with username "([^"]*)"$/, function (username) {
+    loginPage.typeUsername(username);
+    loginPage.typePassword(config.password);
+    loginPage.clickOnLoginButton();
+});
+
+Then(/^I am located on the secure page$/, function () {
+    expect(securePage.getPageTitle()).to.contain('Secure Area');
+});
+
+Then(/^I see the a message with the text "([^"]*)"$/, function (message) {
+    expect(securePage.getSuccessMessage()).to.contain(message);
+});
+```
+
+##### `features/login.feature` => features use the given/when/then from the steps
+
+
+```typescript
+@Smoke
 Feature: Customer is able to login
 Login
     Scenario: Customer is able to login with correct credentials
-    Given I am on the login page
-    When I login with username "tomsmith" and password "SuperSecretPassword!"
-    Then I am located on the secure page
-        And I see the a message with the text "You logged into a secure area!"
+        Given I am on the login page
+        When I login with username "tomsmith"
+        Then I am located on the secure page
+            And I see the a message with the text "You logged into a secure area!"
 ```
 
-# Configurations
-
-To configure your tests, checkout the [`wdio.conf.js`](https://github.com/webdriverio/cucumber-boilerplate/blob/master/wdio.conf.js) file in your test directory. It comes with a bunch of documented options you can choose from.
-
-## Environment-specific configurations
-
-You can setup multiple configs for specific environments. Let's say you want to have a different `baseUrl` for
-your local and pre-deploy tests. Use the `wdio.conf.js` to set all general configs (like mochaOpts) that don't change.
-They act as default values. For each different environment you can create a new config with the following name
-scheme:
-
-```txt
-wdio.<ENVIRONMENT>.conf.js
+## Assertations
+To verify if for instance an element has a given text or if an element is visible, etc. use: [chai](https://www.chaijs.com/guide/styles/#expect).
+```typescript
+//Example, but import expect before with import {expect} from 'chai';
+expect("someText").to.contain(message);
 ```
 
-Now you can create a specific config for your pre-deploy tests:
+## Zalenium 
+Instead of running your UI tests in your native Browser you can also create a [Selenium Grid](https://www.seleniumhq.org/docs/07_selenium_grid.jsp) with Docker where the tests are run . In this chase each tests automatically will be recorded which makes it easier to track issues.
 
-__wdio.STAGING.conf.js__
-```js
-var config = require('./wdio.conf.js').config;
+How to setup Zalenium see: https://opensource.zalando.com/zalenium/
+ 
 
-config.baseUrl = 'http://staging.example.com'
+## Reporters
+This projects uses both the [spec-reporter](https://webdriver.io/docs/spec-reporter.html) and [allure-reporter](https://webdriver.io/docs/allure-reporter.html). The spec reporter offers great feedback when running from terminal and the allure reporter provides you with a nice report and screenshots that are automatically attached to failed tests. After running your the tests, run `npm run report` to generate the allure report. It's nifty. 
 
-exports.config = config;
-``` 
-Your environment-specific config file will get merged into the default config file and overwrites the values you set.
-To run a test in a specific environment just add the desired configuration file as the first parameter:
-
-```sh
-$ yarn run wdio wdio.STAGING.conf.js
-```
-
-You can also run your tests on *Zalenium* (works like a Selenium Grid), just start the tests with:
-```sh
-$ yarn run wdio wdio.zalenium.conf.js
-```
-In case your Zalenium url is not _'localhost'_ change the value to the desired url:
-__wdio.zalenium.conf.js__
-```js
-//will configure it to localhost:4444/wd/hub
-wdioConfig.config.host= 'localhost';
-```
-
-# Running single feature
-Sometimes it's useful to only execute a single feature file, to do so use the following command:
-
-```sh
-$ yarn run wdio --spec ./src/features/login.feature
-```
-
-
-# Using tags
-
-If you want to run only specific tests you can mark your features with tags. These tags will be placed before each feature like so:
-
-```gherkin
-@Tag
-Feature: ...
-```
-
-To run only the tests with specific tag(s) use the `--cucumberOpts.tagExpression=` parameter like so:
-
-```sh
-$ yarn run wdio --cucumberOpts.tagExpression='@Tag or @AnotherTag'
-```
-
-For more tag options please see the [Cucumber.js documentation](https://docs.cucumber.io/tag-expressions/)
-
-# Pending test
-
-If you have failing or unimplemented tests you can mark them as "Pending" so they will get skipped.
-
-```gherkin
-// skip whole feature file
-@Pending
-Feature: ...
-
-// only skip a single scenario
-@Pending
-Scenario: ...
-```

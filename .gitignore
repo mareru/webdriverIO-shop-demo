@@ -1,10 +1,5 @@
-# Logs
-*.log
-
-errorShots
-coverage
-yarn.lock
+.DS_Store
 node_modules
-errorShots/*
-allure-reports
-/.idea
+.idea
+allure-results
+allure-report
