@@ -16,8 +16,8 @@ npm test
 
 ## Running test by annotation in the feature files
 
-Runs all feature file which contain `@Smoke`
-``npm run test --suite @Smoke``
+Runs all feature file which contain `@Test`
+``npm run test -- --cucumberOpts.tagExpression='@Test'``
 
 ## Visual Studio Code project setup
 In your [Visual Studio Code](https://code.visualstudio.com/) download the extension *Cucumber (Gherkin) Full support* and restart your IDE. Aferwards, you should be able to navigate from your feature files to your steps by clicking on the Given/When/Then.

@@ -104,7 +104,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec', ['allure', {
+    reporters: ['spec',['allure', {
       outputDir: 'allure-results',
       disableWebdriverStepsReporting: true,
     }]],
@@ -131,7 +131,7 @@ exports.config = {
       // EXTENSION after requiring MODULE (repeatable)
       name: [],
       // <boolean> hide step definition snippets for pending steps
-      snippets: true,
+      snippets: false,
       // <boolean> hide source uris
       source: true,
       // <string[]> (name) specify the profile to use
@@ -156,7 +156,7 @@ exports.config = {
       // <number> timeout for step definitions
       timeout: 20000,
   },
-    //
+     //
     // =====
     // Hooks
     // =====
@@ -186,90 +186,100 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    before: function (capabilities, specs) {
+    // before: function (capabilities, specs) {
+    // },
+    before: function(capabilities, specs) {
+      // require('ts-node/register');
       require('ts-node').register({ files: true });
-    },
-    /**
-     * Runs before a WebdriverIO command gets executed.
-     * @param {String} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     */
-    // beforeCommand: function (commandName, args) {
-    // },
-
-    /**
-     * Hook that gets executed before the suite starts
-     * @param {Object} suite suite details
-     */
-    // beforeSuite: function (suite) {
-    // },
-    /**
-     * Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-     * @param {Object} test test details
-     */
-    // beforeTest: function (test) {
-    // },
-    /**
-     * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
-     * beforeEach in Mocha)
-     */
-    // beforeHook: function () {
-    // },
-    /**
-     * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
-     * afterEach in Mocha)
-     */
-    // afterHook: function () {
-    // },
-    /**
-     * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-     * @param {Object} test test details
-     */
-    afterTest: function (test) {
-      if (test.error !== undefined) {
-        browser.takeScreenshot();
+  },
+  /**
+   * Runs before a WebdriverIO command gets executed.
+   * @param {String} commandName hook command name
+   * @param {Array} args arguments that command would receive
+   */
+  // beforeCommand: function (commandName, args) {
+  // },
+  /**
+   * Runs before a Cucumber feature
+   */
+  // beforeFeature: function (uri, feature, scenarios) {
+  // },
+  /**
+   * Runs before a Cucumber scenario
+   */
+  // beforeScenario: function (uri, feature, scenario, sourceLocation) {
+  // },
+  /**
+   * Runs before a Cucumber step
+   */
+  // beforeStep: function (uri, feature, stepData, context) {
+  // },
+  /**
+   * Runs after a Cucumber step
+   */
+  // afterStep: function (uri, feature, { error, result, duration, passed }, stepData, context) {
+  // },
+  afterStep: function(uri, feature, { error }) {
+      if (error !== undefined) {
+          browser.takeScreenshot();
       }
-    },
-    /**
-     * Hook that gets executed after the suite has ended
-     * @param {Object} suite suite details
-     */
-    // afterSuite: function (suite) {
-    // },
-
-    /**
-     * Runs after a WebdriverIO command gets executed
-     * @param {String} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     * @param {Number} result 0 - command success, 1 - command error
-     * @param {Object} error error object if any
-     */
-    // afterCommand: function (commandName, args, result, error) {
-    // },
-    /**
-     * Gets executed after all tests are done. You still have access to all global variables from
-     * the test.
-     * @param {Number} result 0 - test pass, 1 - test fail
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
-     */
-    // after: function (result, capabilities, specs) {
-    // },
-    /**
-     * Gets executed right after terminating the webdriver session.
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
-     */
-    // afterSession: function (config, capabilities, specs) {
-    // },
-    /**
-     * Gets executed after all workers got shut down and the process is about to exit.
-     * @param {Object} exitCode 0 - success, 1 - fail
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {<Object>} results object containing test results
-     */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // }
+  },
+  /**
+   * Runs after a Cucumber scenario
+   */
+  // afterScenario: function (uri, feature, scenario, result, sourceLocation) {
+  // },
+  /**
+   * Runs after a Cucumber feature
+   */
+  // afterFeature: function (uri, feature, scenarios) {
+  // },
+  // afterTest: function(test) {
+  //     if (test.error !== undefined) {
+  //     browser.takeScreenshot();
+  //     }
+  // }
+  /**
+   * Runs after a WebdriverIO command gets executed
+   * @param {String} commandName hook command name
+   * @param {Array} args arguments that command would receive
+   * @param {Number} result 0 - command success, 1 - command error
+   * @param {Object} error error object if any
+   */
+  // afterCommand: function (commandName, args, result, error) {
+  // },
+  /**
+   * Gets executed after all tests are done. You still have access to all global variables from
+   * the test.
+   * @param {Number} result 0 - test pass, 1 - test fail
+   * @param {Array.<Object>} capabilities list of capabilities details
+   * @param {Array.<String>} specs List of spec file paths that ran
+   */
+  // after: function (result, capabilities, specs) {
+  // },
+  /**
+   * Gets executed right after terminating the webdriver session.
+   * @param {Object} config wdio configuration object
+   * @param {Array.<Object>} capabilities list of capabilities details
+   * @param {Array.<String>} specs List of spec file paths that ran
+   */
+  // afterSession: function (config, capabilities, specs) {
+  // },
+  /**
+   * Gets executed after all workers got shut down and the process is about to exit. An error
+   * thrown in the onComplete hook will result in the test run failing.
+   * @param {Object} exitCode 0 - success, 1 - fail
+   * @param {Object} config wdio configuration object
+   * @param {Array.<Object>} capabilities list of capabilities details
+   * @param {<Object>} results object containing test results
+   */
+  // onComplete: function(exitCode, config, capabilities, results) {
+  // },
+  /**
+   * Gets executed when a refresh happens.
+   * @param {String} oldSessionId session ID of the old session
+   * @param {String} newSessionId session ID of the new session
+   */
+  //onReload: function(oldSessionId, newSessionId) {
+  //}
 }
