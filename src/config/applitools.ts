@@ -1,3 +1,4 @@
+import { config } from ".";
 
 const {
     ClassicRunner,
@@ -7,11 +8,12 @@ const {
 const {Configuration} = require('@applitools/eyes-selenium');
 
 class ApplitoolsService {
-
     eyes: any;
 
     async takeScreenshot(name: string){
-        if (typeof browser.config.applitoolsKey != "undefined") {
+        const applitoolsConfig = config.applitools;
+
+        if (applitoolsConfig.enabled === true) {
             let eyes: any;
             try{
                 const runner = new ClassicRunner();
@@ -23,7 +25,7 @@ class ApplitoolsService {
                 configuration.setTestName(name);
 
                 eyes.setConfiguration(configuration);
-                eyes.setApiKey(browser.config.applitoolsKey);
+                eyes.setApiKey(applitoolsConfig.key);
 
                 await eyes.open(browser);
 
@@ -34,7 +36,7 @@ class ApplitoolsService {
                 await eyes.closeAsync();
             }
         }else{
-            console.log('Image comparison has been skipped, to activate set the applitoolsKey in your wdio config file');
+            console.log('Image comparison has been skipped, to activate it configure it in the index.ts file');
         }
     }
 }

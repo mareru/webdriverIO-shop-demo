@@ -94,8 +94,6 @@ exports.config = {
     // commands. Instead, they hook themselves up into the test process.
     services: ['selenium-standalone'],
     
-    //Once this is activated you can compare websites with the then method located in imagecomparison_steps
-    applitoolsKey: 'nwy8wbybx8DuqNnE3L6WsHL0KLxw0T97r4Pg5103QCN280110',
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html

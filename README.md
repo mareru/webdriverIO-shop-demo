@@ -140,9 +140,13 @@ This projects uses both the [spec-reporter](https://webdriver.io/docs/spec-repor
 You can send images of websites to Applitools where an image comparison is being executed with an AI.
 Register at Applitools and you will get an API key which looks like: "nwy8wbybx8fuqNnE3L6WsHL0KLxw0T97r4Pg5103QCN283"
 
-In case you want to run those tests firstly set the api key in the wdio config file: 
+In case you want to run those tests firstly set the api key and set the enabled to `true` in the index.ts file:
+##### `src/config/applitools.ts` 
 ```typescript
-applitoolsKey: 'your key',
+  applitools: {
+    enabled: true,
+    key: 'add your key here'
+  }
 ```
 If this key is not set the Image comparison tests will not trigger.
 Once you have configured the Applitools key you can triggered those tests in the feature files by calling the step: Then I compare the image of site: "Some Page" as illustrated in the following code: 
