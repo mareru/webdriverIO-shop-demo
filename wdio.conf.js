@@ -20,7 +20,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-      './src/features/**/*.feature',
+        './src/features/**/*.feature',
     ],
     // Patterns to exclude.
     exclude: [
@@ -93,6 +93,9 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['selenium-standalone'],
+    
+    //Once this is activated you can compare websites with the then method located in imagecomparison_steps
+    applitoolsKey: 'nwy8wbybx8DuqNnE3L6WsHL0KLxw0T97r4Pg5103QCN280110',
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -104,59 +107,61 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec',['allure', {
-      outputDir: 'allure-results',
-      disableWebdriverStepsReporting: true,
+    reporters: ['spec', ['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
     }]],
 
     // If you are using Cucumber you need to specify the location of your step
     // definitions.
     cucumberOpts: {
-      requireModule: [
-        'tsconfig-paths/register',
-        () => { require('ts-node').register({ files: true }) },
-      ],
-      // <boolean> show full backtrace for errors
-      backtrace: false,
-      // <boolean< Treat ambiguous definitions as errors
-      failAmbiguousDefinitions: true,
-      // <boolean> invoke formatters without executing steps
-      // dryRun: false,
-      // <boolean> abort the run on first failure
-      failFast: false,
-      // <boolean> Enable this config to treat undefined definitions as
-      // warnings
-      ignoreUndefinedDefinitions: false,
-      // <string[]> ("extension:module") require files with the given
-      // EXTENSION after requiring MODULE (repeatable)
-      name: [],
-      // <boolean> hide step definition snippets for pending steps
-      snippets: false,
-      // <boolean> hide source uris
-      source: true,
-      // <string[]> (name) specify the profile to use
-      profile: [],
-      // <string[]> (file/dir) require files before executing features
-      require: [
-          './src/step_definitions/*.ts',
-          // Or search a (sub)folder for TS files with a wildcard
-          // works since version 1.1 of the wdio-cucumber-framework
-          //'./src/**/*.TS',
-      ],
-      // <string> specify a custom snippet syntax
-      snippetSyntax: undefined,
-      // <boolean> fail if there are any undefined or pending steps
-      strict: true,
-      // <string> (expression) only execute the features or scenarios with
-      // tags matching the expression, see
-      // https://docs.cucumber.io/tag-expressions/
-      tagExpression: 'not @Pending',
-      // <boolean> add cucumber tags to feature or scenario name
-      tagsInTitle: false,
-      // <number> timeout for step definitions
-      timeout: 20000,
-  },
-     //
+        requireModule: [
+            'tsconfig-paths/register',
+            () => {
+                require('ts-node').register({files: true})
+            },
+        ],
+        // <boolean> show full backtrace for errors
+        backtrace: false,
+        // <boolean< Treat ambiguous definitions as errors
+        failAmbiguousDefinitions: true,
+        // <boolean> invoke formatters without executing steps
+        // dryRun: false,
+        // <boolean> abort the run on first failure
+        failFast: false,
+        // <boolean> Enable this config to treat undefined definitions as
+        // warnings
+        ignoreUndefinedDefinitions: false,
+        // <string[]> ("extension:module") require files with the given
+        // EXTENSION after requiring MODULE (repeatable)
+        name: [],
+        // <boolean> hide step definition snippets for pending steps
+        snippets: false,
+        // <boolean> hide source uris
+        source: true,
+        // <string[]> (name) specify the profile to use
+        profile: [],
+        // <string[]> (file/dir) require files before executing features
+        require: [
+            './src/step_definitions/*.ts',
+            // Or search a (sub)folder for TS files with a wildcard
+            // works since version 1.1 of the wdio-cucumber-framework
+            //'./src/**/*.TS',
+        ],
+        // <string> specify a custom snippet syntax
+        snippetSyntax: undefined,
+        // <boolean> fail if there are any undefined or pending steps
+        strict: true,
+        // <string> (expression) only execute the features or scenarios with
+        // tags matching the expression, see
+        // https://docs.cucumber.io/tag-expressions/
+        tagExpression: 'not @Pending',
+        // <boolean> add cucumber tags to feature or scenario name
+        tagsInTitle: false,
+        // <number> timeout for step definitions
+        timeout: 20000,
+    },
+    //
     // =====
     // Hooks
     // =====
@@ -188,98 +193,106 @@ exports.config = {
      */
     // before: function (capabilities, specs) {
     // },
-    before: function(capabilities, specs) {
-      // require('ts-node/register');
-      require('ts-node').register({ files: true });
-  },
-  /**
-   * Runs before a WebdriverIO command gets executed.
-   * @param {String} commandName hook command name
-   * @param {Array} args arguments that command would receive
-   */
-  // beforeCommand: function (commandName, args) {
-  // },
-  /**
-   * Runs before a Cucumber feature
-   */
-  // beforeFeature: function (uri, feature, scenarios) {
-  // },
-  /**
-   * Runs before a Cucumber scenario
-   */
-  // beforeScenario: function (uri, feature, scenario, sourceLocation) {
-  // },
-  /**
-   * Runs before a Cucumber step
-   */
-  // beforeStep: function (uri, feature, stepData, context) {
-  // },
-  /**
-   * Runs after a Cucumber step
-   */
-  // afterStep: function (uri, feature, { error, result, duration, passed }, stepData, context) {
-  // },
-  afterStep: function(uri, feature, { error }) {
-      if (error !== undefined) {
-          browser.takeScreenshot();
-      }
-  },
-  /**
-   * Runs after a Cucumber scenario
-   */
-  // afterScenario: function (uri, feature, scenario, result, sourceLocation) {
-  // },
-  /**
-   * Runs after a Cucumber feature
-   */
-  // afterFeature: function (uri, feature, scenarios) {
-  // },
-  // afterTest: function(test) {
-  //     if (test.error !== undefined) {
-  //     browser.takeScreenshot();
-  //     }
-  // }
-  /**
-   * Runs after a WebdriverIO command gets executed
-   * @param {String} commandName hook command name
-   * @param {Array} args arguments that command would receive
-   * @param {Number} result 0 - command success, 1 - command error
-   * @param {Object} error error object if any
-   */
-  // afterCommand: function (commandName, args, result, error) {
-  // },
-  /**
-   * Gets executed after all tests are done. You still have access to all global variables from
-   * the test.
-   * @param {Number} result 0 - test pass, 1 - test fail
-   * @param {Array.<Object>} capabilities list of capabilities details
-   * @param {Array.<String>} specs List of spec file paths that ran
-   */
-  // after: function (result, capabilities, specs) {
-  // },
-  /**
-   * Gets executed right after terminating the webdriver session.
-   * @param {Object} config wdio configuration object
-   * @param {Array.<Object>} capabilities list of capabilities details
-   * @param {Array.<String>} specs List of spec file paths that ran
-   */
-  // afterSession: function (config, capabilities, specs) {
-  // },
-  /**
-   * Gets executed after all workers got shut down and the process is about to exit. An error
-   * thrown in the onComplete hook will result in the test run failing.
-   * @param {Object} exitCode 0 - success, 1 - fail
-   * @param {Object} config wdio configuration object
-   * @param {Array.<Object>} capabilities list of capabilities details
-   * @param {<Object>} results object containing test results
-   */
-  // onComplete: function(exitCode, config, capabilities, results) {
-  // },
-  /**
-   * Gets executed when a refresh happens.
-   * @param {String} oldSessionId session ID of the old session
-   * @param {String} newSessionId session ID of the new session
-   */
-  //onReload: function(oldSessionId, newSessionId) {
-  //}
-}
+    before: function (capabilities, specs) {
+        // require('ts-node/register');
+        require('ts-node').register({files: true});
+
+
+        //Sample command
+        function browserCustomCommandExample(text) {
+            console.log(text);
+        }
+
+        browser.addCommand('browserCustomCommandExample', browserCustomCommandExample)
+    },
+    /**
+     * Runs before a WebdriverIO command gets executed.
+     * @param {String} commandName hook command name
+     * @param {Array} args arguments that command would receive
+     */
+    // beforeCommand: function (commandName, args) {
+    // },
+    /**
+     * Runs before a Cucumber feature
+     */
+    // beforeFeature: function (uri, feature, scenarios) {
+    // },
+    /**
+     * Runs before a Cucumber scenario
+     */
+    // beforeScenario: function (uri, feature, scenario, sourceLocation) {
+    // },
+    /**
+     * Runs before a Cucumber step
+     */
+    // beforeStep: function (uri, feature, stepData, context) {
+    // },
+    /**
+     * Runs after a Cucumber step
+     */
+    // afterStep: function (uri, feature, { error, result, duration, passed }, stepData, context) {
+    // },
+    afterStep: function (uri, feature, {error}) {
+        if (error !== undefined) {
+            browser.takeScreenshot();
+        }
+    },
+    /**
+     * Runs after a Cucumber scenario
+     */
+    // afterScenario: function (uri, feature, scenario, result, sourceLocation) {
+    // },
+    /**
+     * Runs after a Cucumber feature
+     */
+    // afterFeature: function (uri, feature, scenarios) {
+    // },
+    // afterTest: function(test) {
+    //     if (test.error !== undefined) {
+    //     browser.takeScreenshot();
+    //     }
+    // }
+    /**
+     * Runs after a WebdriverIO command gets executed
+     * @param {String} commandName hook command name
+     * @param {Array} args arguments that command would receive
+     * @param {Number} result 0 - command success, 1 - command error
+     * @param {Object} error error object if any
+     */
+    // afterCommand: function (commandName, args, result, error) {
+    // },
+    /**
+     * Gets executed after all tests are done. You still have access to all global variables from
+     * the test.
+     * @param {Number} result 0 - test pass, 1 - test fail
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that ran
+     */
+    // after: function (result, capabilities, specs) {
+    // },
+    /**
+     * Gets executed right after terminating the webdriver session.
+     * @param {Object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that ran
+     */
+    // afterSession: function (config, capabilities, specs) {
+    // },
+    /**
+     * Gets executed after all workers got shut down and the process is about to exit. An error
+     * thrown in the onComplete hook will result in the test run failing.
+     * @param {Object} exitCode 0 - success, 1 - fail
+     * @param {Object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {<Object>} results object containing test results
+     */
+    // onComplete: function(exitCode, config, capabilities, results) {
+    // },
+    /**
+     * Gets executed when a refresh happens.
+     * @param {String} oldSessionId session ID of the old session
+     * @param {String} newSessionId session ID of the new session
+     */
+    //onReload: function(oldSessionId, newSessionId) {
+    //}
+};

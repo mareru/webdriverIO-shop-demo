@@ -23,6 +23,7 @@ class LoginPage extends Page {
      */
     open() {
         super.open('/login');
+        browser.browserCustomCommandExample('This is a sample custom webdriver.io command');
     }
 
     getPageTitle() {
