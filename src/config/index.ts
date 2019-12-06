@@ -4,8 +4,8 @@ const shared = {
   username: 'admin',
 
   applitools: {
-    enabled: true,
-    key: '81pA4oFuuv5V109YlSWwXRss104Y9s108109UXRuOGXwAzmqsm0110'
+    enabled: false,
+    key: 'your applitools key'
   }
 
 };

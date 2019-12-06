@@ -1,6 +1,6 @@
-declare module WebdriverIO {
+declare namespace WebdriverIO {
     // adding command to `browser`
     interface Browser {
-        browserCustomCommandExample: (arg) => void
+        browserCustomCommandExample: (arg) => void;
     }
 }
