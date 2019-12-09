@@ -14,7 +14,7 @@ class SecurePage extends Page {
      * define or overwrite page methods
      */
     open() {
-        super.open("/login");       //this will append `loginpage` to the baseUrl to form complete URL
+        super.open('/login');       // this will append `loginpage` to the baseUrl to form complete URL
     }
 
     getPageTitle() {

@@ -10,7 +10,8 @@ class WysiwygPage extends Page {
 
     /**
      * define or overwrite page methods
-     * Which browser manipulation commands - like for instance $("#someId).click() - are available see: http://webdriver.io/api.html
+     * Which browser manipulation commands -
+     * like for instance $("#someId).click() - are available see: http://webdriver.io/api.html
      */
     open() {
         super.open('/tinymce');
@@ -21,10 +22,10 @@ class WysiwygPage extends Page {
     }
 
     enterTextInEditor(text: string) {
-        //Text is in an iframe, first switch to that iframe
+        // Text is in an iframe, first switch to that iframe
         // you can use here the browser object
         browser.switchToFrame($('#mce_0_ifr'));
-        //Enter text
+        // Enter text
         this.iframeTextField.waitForExist(4000);
         this.iframeTextField.setValue(text);
     }

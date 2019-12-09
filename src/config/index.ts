@@ -1,7 +1,12 @@
 const shared = {
   // Default user logged in for most tests
   password: 'SuperSecretPassword!',
-  username: 'admin'
+  username: 'admin',
+
+  applitools: {
+    enabled: false,
+    key: 'your applitools key'
+  }
 
 };
 

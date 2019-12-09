@@ -136,3 +136,60 @@ How to setup Zalenium see: https://opensource.zalando.com/zalenium/
 ## Reporters
 This projects uses both the [spec-reporter](https://webdriver.io/docs/spec-reporter.html) and [allure-reporter](https://webdriver.io/docs/allure-reporter.html). The spec reporter offers great feedback when running from terminal and the allure reporter provides you with a nice report and screenshots that are automatically attached to failed tests. After running your the tests, run `npm run report` to generate the allure report. It's nifty. 
 
+
+## Visual Page Comparison with Applitools 
+You can send images of websites to Applitools where an image comparison is being executed with an AI.
+Register at Applitools and you will get an API key which looks like: "nwy8wbybx8fuqNnE3L6WsHL0KLxw0T97r4Pg5103QCN283"
+
+In case you want to run those tests firstly set the api key and set the enabled to `true` in the index.ts file:
+##### `src/config/applitools.ts` 
+```typescript
+  applitools: {
+    enabled: true,
+    key: 'add your key here'
+  }
+```
+If this key is not set the Image comparison tests will not trigger.
+Once you have configured the Applitools key you can triggered those tests in the feature files by calling the step: Then I compare the image of site: "Some Page" as illustrated in the following code: 
+
+```typescript
+@Smoke
+Feature: Customer is able to login
+Login
+    Scenario: Customer is able to login with correct credentials
+        Given I am on the login page
+        Then I compare the image of site: "Login Page"
+        When I login with username "tomsmith"
+        Then I am located on the secure page
+            And I see the a message with the text "You logged into a secure area!"
+            Then I compare the image of site: "Secure Page"
+```
+
+## Creating custom commands
+You can create your custom commands. 
+Firstly extend interface in wdio.d.ts
+
+```typescript
+declare module WebdriverIO {
+    // adding command to `browser`
+    interface Browser {
+        browserCustomCommandExample: (arg) => void
+    }
+}
+```
+Afterwards, add in the wdio config the custom command in the before method 
+```typescript
+  before: function (capabilities, specs) {
+       
+        //Sample command
+        function browserCustomCommandExample(text) {
+            console.log(text);
+        }
+
+        browser.addCommand('browserCustomCommandExample', browserCustomCommandExample)
+    },
+```
+Once this is done you are able to use this command directly in your browser object, for example: 
+```typescript
+   browser.browserCustomCommandExample('This is a sample custom webdriver.io command');
+```

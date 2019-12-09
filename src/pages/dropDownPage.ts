@@ -10,7 +10,8 @@ class DropDownPage extends Page {
 
     /**
      * define or overwrite page methods
-     * Which browser manipulation commands - like for instance $("#someId).click() - are available see: http://webdriver.io/api.html
+     * Which browser manipulation commands -
+     * like for instance $("#someId).click() - are available see: http://webdriver.io/api.html
      */
     open() {
         super.open('/dropdown');
