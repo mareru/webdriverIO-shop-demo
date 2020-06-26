@@ -1,11 +1,11 @@
 import { config } from '.';
 
-const {
+import {
     ClassicRunner,
     Eyes,
     Target
-} = require('@applitools/eyes-webdriverio');
-const {Configuration} = require('@applitools/eyes-selenium');
+} from '@applitools/eyes-webdriverio';
+import {Configuration} from '@applitools/eyes-webdriverio';
 
 class ApplitoolsService {
     eyes: any;
@@ -13,7 +13,7 @@ class ApplitoolsService {
     async takeScreenshot(name: string) {
         const applitoolsConfig = config.applitools;
 
-        if (applitoolsConfig.enabled === true) {
+        if (applitoolsConfig.enabled) {
             let eyes: any;
             try {
                 const runner = new ClassicRunner();
