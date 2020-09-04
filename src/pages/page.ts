@@ -1,18 +1,20 @@
-export default class Page {
+export class Page {
 
-    /**
-     * define elements
-     */
+  get headline() {
+    return $('head title');
+  }
 
-    get headline() {
-        return $('h2');
-    }
+  get page() {
+    return $('#page');
+  }
 
-    open(path) {
-        browser.url(path);
-    }
+  open(path) {
+    browser.url(path);
+    this.page.waitForDisplayed();
+  }
 
-    getPageTitle() {
-        return this.headline.getText();
-    }
+  getPageTitle() {
+    this.headline.waitForExist();
+    return this.headline.getText();
+  }
 }

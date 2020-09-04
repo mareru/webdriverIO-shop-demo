@@ -76,7 +76,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://qalabs.ecx.local',
+    baseUrl: 'http://automationpractice.com',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -93,7 +93,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['selenium-standalone'],
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -157,7 +157,7 @@ exports.config = {
         // <boolean> add cucumber tags to feature or scenario name
         tagsInTitle: false,
         // <number> timeout for step definitions
-        timeout: 20000,
+        timeout: 60000,
     },
     //
     // =====
@@ -195,6 +195,10 @@ exports.config = {
         // require('ts-node/register');
         require('ts-node').register({files: true});
 
+        const chai = require('chai');
+        global.should = chai.should();
+
+        browser.maximizeWindow();
 
         //Sample command
         function browserCustomCommandExample(text) {
