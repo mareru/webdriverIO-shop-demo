@@ -21,8 +21,6 @@ In your [Visual Studio Code](https://code.visualstudio.com/) download the extens
 ## Jenkins setup
 * Sample Jenkins that runs the project can be found here: http://qalabs.ecx.local:8080/job/WebdriverIO/
 * Also includes a sample Allure report for Jenkins: http://qalabs.ecx.local:8080/job/WebdriverIO/allure/#
-* Zalenium reports of those tests: http://build-ecx-sitecore:4444/dashboard/
-
 
 ## Page Objects
 
