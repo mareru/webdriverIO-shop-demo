@@ -20,7 +20,7 @@ export class HomePage extends Page {
   }
 
   verify() {
-    expect(browser.getTitle()).to.contain(testingData.homePageTile);
+    expect(browser.getTitle()).to.contain(testingData.pageTitles.homePageTile);
     this.phoneNumber.waitForDisplayed();
     expect(this.phoneNumber.isDisplayed()).to.be.true;
     expect(this.phoneNumber.getText()).to.contain(testingData.phoneNumber);

@@ -30,16 +30,13 @@ export class LoginPage extends Page {
   }
 
   verify() {
+    expect(browser.getTitle()).to.contain(testingData.pageTitles.loginPageTitle);
     this.loginButton.waitForDisplayed();
     this.loginButton.isDisplayed().should.be.true;
 
     this.navigationBreadcrumb.waitForDisplayed();
     this.navigationBreadcrumb.isDisplayed().should.be.true;
     this.navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
-  }
-
-  getPageTitle() {
-    return super.getPageTitle();
   }
 
   typeUsername(username: string) {
@@ -81,10 +78,10 @@ export class LoginPage extends Page {
       }
       default: {
         throw new TypeError('Unsupported type of error message');
-        break;
       }
     }
   }
+
   // authenticationErrorMessageIsVisible() {
   //   expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
   // }
