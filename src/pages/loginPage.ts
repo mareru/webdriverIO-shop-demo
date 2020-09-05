@@ -3,7 +3,7 @@ import {ErrorMessageType} from 'src/enums/ErrorMessageType';
 import {errorMessages, testingData} from 'src/testData';
 import {Page} from './page';
 
-export class LoginPage extends Page {
+class LoginPage extends Page {
 
   get loginButton() {
     return $('#SubmitLogin > span');
@@ -25,21 +25,10 @@ export class LoginPage extends Page {
     return $('#center_column > div:first-of-type');
   }
 
-  get signOutButton() {
-    return $('a[title="Log me out"]');
-  }
-
   verify() {
-    this.loginButton.waitForDisplayed();
-    this.loginButton.isDisplayed().should.be.true;
-
-    this.navigationBreadcrumb.waitForDisplayed();
-    this.navigationBreadcrumb.isDisplayed().should.be.true;
-    this.navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
-  }
-
-  getPageTitle() {
-    return super.getPageTitle();
+    expect(browser.getTitle()).to.contain(testingData.pageTitles.loginPageTitle);
+    this.loginButtonIsDisplayed();
+    this.authenticationBreadcrumbIsDisplayed();
   }
 
   typeUsername(username: string) {
@@ -59,10 +48,15 @@ export class LoginPage extends Page {
     this.loginButton.click();
   }
 
-  // TODO extract to header module along with the phone number
-  clickOnSignOutButton() {
-    this.signOutButton.waitForDisplayed();
-    this.signOutButton.click();
+  authenticationBreadcrumbIsDisplayed() {
+    this.navigationBreadcrumb.waitForDisplayed();
+    this.navigationBreadcrumb.isDisplayed().should.be.true;
+    this.navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
+  }
+
+  loginButtonIsDisplayed() {
+    this.loginButton.waitForDisplayed();
+    this.loginButton.isDisplayed().should.be.true;
   }
 
   errorMessageIsVisible(type: ErrorMessageType) {
@@ -75,7 +69,7 @@ export class LoginPage extends Page {
         expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
         break;
       }
-      case  ErrorMessageType.RequiredPassword: {
+      case ErrorMessageType.RequiredPassword: {
         expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
         break;
       }
@@ -84,6 +78,7 @@ export class LoginPage extends Page {
       }
     }
   }
+
   // authenticationErrorMessageIsVisible() {
   //   expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
   // }
@@ -96,3 +91,5 @@ export class LoginPage extends Page {
   //   expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
   // }
 }
+
+export const loginPage = new LoginPage();

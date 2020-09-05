@@ -1,13 +1,15 @@
 const testingData = {
-  baseUrl: 'http://automationpractice.com',
   email: 'ecx@test.com',
-  homePageTile: 'My Store',
   invalidPassword: 'test',
   invalidPasswordErrorMessage: 'Invalid password',
   loggedInUser: 'John Doe',
   navigationAuthentication: 'Authentication',
+  pageTitles: {
+    homePageTile: 'My Store',
+    loginPageTitle: 'Login - My Store'
+  },
   phoneNumber: '0123-456-789',
-  validPassword: '12345',
+  validPassword: '12345'
 };
 
 const errorMessages = {
