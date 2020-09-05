@@ -27,12 +27,8 @@ class LoginPage extends Page {
 
   verify() {
     expect(browser.getTitle()).to.contain(testingData.pageTitles.loginPageTitle);
-    this.loginButton.waitForDisplayed();
-    this.loginButton.isDisplayed().should.be.true;
-
-    this.navigationBreadcrumb.waitForDisplayed();
-    this.navigationBreadcrumb.isDisplayed().should.be.true;
-    this.navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
+    this.loginButtonIsDisplayed();
+    this.authenticationBreadcrumbIsDisplayed();
   }
 
   typeUsername(username: string) {
@@ -50,6 +46,17 @@ class LoginPage extends Page {
   clickOnLoginButton() {
     this.loginButton.waitForDisplayed();
     this.loginButton.click();
+  }
+
+  authenticationBreadcrumbIsDisplayed() {
+    this.navigationBreadcrumb.waitForDisplayed();
+    this.navigationBreadcrumb.isDisplayed().should.be.true;
+    this.navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
+  }
+
+  loginButtonIsDisplayed() {
+    this.loginButton.waitForDisplayed();
+    this.loginButton.isDisplayed().should.be.true;
   }
 
   errorMessageIsVisible(type: ErrorMessageType) {
