@@ -1,21 +1,17 @@
 import {Given, Then, When} from 'cucumber';
 import {ErrorMessageType} from 'src/enums/ErrorMessageType';
-import {HomePage} from 'src/pages/homePage';
+import {homePage} from 'src/pages/homePage';
+import {header} from 'src/pages/modules/headerModule';
 import {testingData} from 'src/testData';
-import {LoginPage} from '../pages/loginPage';
-
-let loginPage: LoginPage;
-let homePage: HomePage;
+import {loginPage} from '../pages/loginPage';
 
 Given(/^I visit home page$/, () => {
-  homePage = new HomePage();
   homePage.open();
   homePage.verify();
 });
 
 When(/^I navigate to login page$/, () => {
-  homePage.clickOnSignInButton();
-  loginPage = new LoginPage();
+  header.clickOnSignInButton();
   loginPage.verify();
 });
 
@@ -26,7 +22,7 @@ When(/^I enter valid credentials$/, () => {
 });
 
 Then(/^I can see my username displayed on the page$/, () => {
-  homePage.isLoggedInWithUser(testingData.loggedInUser);
+  header.isLoggedInWithUser(testingData.loggedInUser);
 });
 
 When(/^I enter invalid username (.*) or password (.*)$/, (username, password) => {
@@ -40,7 +36,7 @@ Then(/^I can see Authentication error message$/, () => {
   loginPage.errorMessageIsVisible(ErrorMessageType.Authentication);
 });
 Then(/^I can successfully log out$/, () => {
-  loginPage.clickOnSignOutButton();
+  header.clickOnSignOutButton();
 });
 
 When(/^I enter invalid email (.*) as username$/, (email) => {

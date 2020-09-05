@@ -3,7 +3,7 @@ import {ErrorMessageType} from 'src/enums/ErrorMessageType';
 import {errorMessages, testingData} from 'src/testData';
 import {Page} from './page';
 
-export class LoginPage extends Page {
+class LoginPage extends Page {
 
   get loginButton() {
     return $('#SubmitLogin > span');
@@ -23,10 +23,6 @@ export class LoginPage extends Page {
 
   getErrorMessage() {
     return $('#center_column > div:first-of-type');
-  }
-
-  get signOutButton() {
-    return $('a[title="Log me out"]');
   }
 
   verify() {
@@ -54,12 +50,6 @@ export class LoginPage extends Page {
   clickOnLoginButton() {
     this.loginButton.waitForDisplayed();
     this.loginButton.click();
-  }
-
-  // TODO extract to header module along with the phone number
-  clickOnSignOutButton() {
-    this.signOutButton.waitForDisplayed();
-    this.signOutButton.click();
   }
 
   errorMessageIsVisible(type: ErrorMessageType) {
@@ -94,3 +84,5 @@ export class LoginPage extends Page {
   //   expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
   // }
 }
+
+export const loginPage = new LoginPage();
