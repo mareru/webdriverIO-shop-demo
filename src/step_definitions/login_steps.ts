@@ -4,8 +4,8 @@ import {HomePage} from 'src/pages/homePage';
 import {testingData} from 'src/testData';
 import {LoginPage} from '../pages/loginPage';
 
-let loginPage;
-let homePage;
+let loginPage: LoginPage;
+let homePage: HomePage;
 
 Given(/^I visit home page$/, () => {
   homePage = new HomePage();
