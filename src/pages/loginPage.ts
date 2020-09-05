@@ -69,7 +69,7 @@ class LoginPage extends Page {
         expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
         break;
       }
-      case  ErrorMessageType.RequiredPassword: {
+      case ErrorMessageType.RequiredPassword: {
         expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
         break;
       }
