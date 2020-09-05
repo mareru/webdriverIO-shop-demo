@@ -81,6 +81,7 @@ export class LoginPage extends Page {
       }
       default: {
         throw new TypeError('Unsupported type of error message');
+        break;
       }
     }
   }
