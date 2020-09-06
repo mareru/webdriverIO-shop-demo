@@ -1,8 +1,8 @@
 import {Given, Then, When} from 'cucumber';
+import {testingData} from 'src/constants/testData';
 import {ErrorMessageType} from 'src/enums/ErrorMessageType';
 import {homePage} from 'src/pages/homePage';
 import {header} from 'src/pages/modules/headerModule';
-import {testingData} from 'src/testData';
 import {loginPage} from '../pages/loginPage';
 
 Given(/^I visit home page$/, () => {

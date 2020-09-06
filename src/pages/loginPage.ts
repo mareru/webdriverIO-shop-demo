@@ -1,6 +1,8 @@
 import {expect} from 'chai';
+import {errorMessages} from 'src/constants/errorMessages';
+import {expectMessages} from 'src/constants/expectMessages';
+import {testingData} from 'src/constants/testData';
 import {ErrorMessageType} from 'src/enums/ErrorMessageType';
-import {errorMessages, testingData} from 'src/testData';
 import {Page} from './page';
 
 class LoginPage extends Page {
@@ -21,56 +23,62 @@ class LoginPage extends Page {
     return $('.navigation_page');
   }
 
-  getErrorMessage() {
+  get errorMessage() {
     return $('#center_column > div:first-of-type');
   }
 
   verify() {
-    expect(browser.getTitle()).to.contain(testingData.pageTitles.loginPageTitle);
+    expect(browser.getTitle(), expectMessages.incorrectTitle).to.contain(testingData.pageTitles.loginPageTitle);
     this.loginButtonIsDisplayed();
     this.authenticationBreadcrumbIsDisplayed();
   }
 
   typeUsername(username: string) {
-    this.emailField.waitForDisplayed();
-    this.emailField.clearValue();
-    this.emailField.setValue(username);
+    const emailField = this.emailField;
+    emailField.waitForDisplayed();
+    emailField.clearValue();
+    emailField.setValue(username);
   }
 
   typePassword(password: string) {
-    this.passwordField.waitForDisplayed();
-    this.passwordField.clearValue();
-    this.passwordField.setValue(password);
+    const passwordField = this.passwordField;
+    passwordField.waitForDisplayed();
+    passwordField.clearValue();
+    passwordField.setValue(password);
   }
 
   clickOnLoginButton() {
-    this.loginButton.waitForDisplayed();
-    this.loginButton.click();
+    const loginButton = this.loginButton;
+    loginButton.waitForDisplayed();
+    loginButton.click();
   }
 
   authenticationBreadcrumbIsDisplayed() {
-    this.navigationBreadcrumb.waitForDisplayed();
-    this.navigationBreadcrumb.isDisplayed().should.be.true;
-    this.navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
+    const navigationBreadcrumb = this.navigationBreadcrumb;
+    navigationBreadcrumb.waitForDisplayed();
+    navigationBreadcrumb.isDisplayed().should.be.true;
+    navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
   }
 
   loginButtonIsDisplayed() {
-    this.loginButton.waitForDisplayed();
-    this.loginButton.isDisplayed().should.be.true;
+    const loginButton = this.loginButton;
+    loginButton.waitForDisplayed();
+    loginButton.isDisplayed().should.be.true;
   }
 
   errorMessageIsVisible(type: ErrorMessageType) {
+    const errorMessage = this.errorMessage;
     switch (type) {
       case ErrorMessageType.Authentication: {
-        expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
+        expect(errorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
         break;
       }
       case ErrorMessageType.InvalidEmail: {
-        expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
+        expect(errorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
         break;
       }
       case ErrorMessageType.RequiredPassword: {
-        expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
+        expect(errorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
         break;
       }
       default: {
@@ -80,15 +88,15 @@ class LoginPage extends Page {
   }
 
   // authenticationErrorMessageIsVisible() {
-  //   expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
+  //   expect(this.errorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
   // }
   //
   // invalidEmailErrorMessageIsVisible() {
-  //   expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
+  //   expect(this.errorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
   // }
   //
   // passwordRequiredErrorMessageIsVisible() {
-  //   expect(this.getErrorMessage().getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
+  //   expect(this.errorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
   // }
 }
 

@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {testingData} from 'src/testData';
+import {testingData} from 'src/constants/testData';
 
 class HeaderModule {
 
@@ -20,21 +20,24 @@ class HeaderModule {
   }
 
   clickOnSignOutButton() {
-    this.signOutButton.waitForDisplayed();
-    this.signOutButton.click();
+    const signOutButton = this.signOutButton;
+    signOutButton.waitForDisplayed();
+    signOutButton.click();
   }
 
   clickOnSignInButton() {
-    this.signInButton.waitForDisplayed();
-    this.signInButton.isDisplayed().should.be.true;
-    this.signInButton.waitForClickable();
-    this.signInButton.click();
+    const signInButton = this.signInButton;
+    signInButton.waitForDisplayed();
+    signInButton.isDisplayed().should.be.true;
+    signInButton.waitForClickable();
+    signInButton.click();
   }
 
   contactPhoneNumberIsDisplayed() {
-    this.phoneNumber.waitForDisplayed();
-    expect(this.phoneNumber.isDisplayed()).to.be.true;
-    expect(this.phoneNumber.getText()).to.contain(testingData.phoneNumber);
+    const phoneNumber = this.phoneNumber;
+    phoneNumber.waitForDisplayed();
+    expect(phoneNumber.isDisplayed(), 'Contact phone number is not displayed').to.be.true;
+    expect(phoneNumber.getText(), 'Contact phone number is not correct').to.contain(testingData.phoneNumber);
   }
 
   isLoggedInWithUser(username: string) {
