@@ -35,7 +35,8 @@ Feature: Login
     Then I can see Password is required error message
 
   # set at the end to avoid situation that if it fails and log out step is not executed,
-  # then app will be in bad state for other scenarios and they will fail
+  # then the app will be in bad state for other scenarios and they will fail
+  # not because of the error in the app but because of the illogical flow
   Scenario: Login with valid credentials
     And I enter valid credentials
     Then I can see my username displayed on the page
