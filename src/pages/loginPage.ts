@@ -1,6 +1,8 @@
 import {expect} from 'chai';
+import {errorMessages} from 'src/constants/errorMessages';
+import {expectMessages} from 'src/constants/expectMessages';
+import {testingData} from 'src/constants/testData';
 import {ErrorMessageType} from 'src/enums/ErrorMessageType';
-import {errorMessages, testingData} from 'src/testData';
 import {Page} from './page';
 
 class LoginPage extends Page {
@@ -26,7 +28,7 @@ class LoginPage extends Page {
   }
 
   verify() {
-    expect(browser.getTitle()).to.contain(testingData.pageTitles.loginPageTitle);
+    expect(browser.getTitle(), expectMessages.incorrectTitle).to.contain(testingData.pageTitles.loginPageTitle);
     this.loginButtonIsDisplayed();
     this.authenticationBreadcrumbIsDisplayed();
   }

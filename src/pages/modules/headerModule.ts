@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {testingData} from 'src/testData';
+import {testingData} from 'src/constants/testData';
 
 class HeaderModule {
 
@@ -33,8 +33,8 @@ class HeaderModule {
 
   contactPhoneNumberIsDisplayed() {
     this.phoneNumber.waitForDisplayed();
-    expect(this.phoneNumber.isDisplayed()).to.be.true;
-    expect(this.phoneNumber.getText()).to.contain(testingData.phoneNumber);
+    expect(this.phoneNumber.isDisplayed(), 'Contact phone number is not displayed').to.be.true;
+    expect(this.phoneNumber.getText(), 'Contact phone number is not correct').to.contain(testingData.phoneNumber);
   }
 
   isLoggedInWithUser(username: string) {
