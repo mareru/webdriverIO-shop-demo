@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {errorMessages} from 'src/constants/errorMessages';
 import {expectMessages} from 'src/constants/expectMessages';
-import {testingData} from 'src/constants/testData';
+import {testingData} from 'src/constants/testingData';
 import {ErrorMessageType} from 'src/enums/ErrorMessageType';
 import {Page} from './page';
 

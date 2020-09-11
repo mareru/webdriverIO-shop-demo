@@ -1,5 +1,5 @@
 import {Given, Then, When} from 'cucumber';
-import {testingData} from 'src/constants/testData';
+import {testingData} from 'src/constants/testingData';
 import {ErrorMessageType} from 'src/enums/ErrorMessageType';
 import {homePage} from 'src/pages/homePage';
 import {header} from 'src/pages/modules/headerModule';
