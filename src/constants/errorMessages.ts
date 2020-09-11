@@ -1,7 +1,7 @@
 const errorMessages = {
-  authenticationFailedErrorMessage: 'There is 1 error\n' + 'Authentication failed.',
-  invalidEmailErrorMessage: 'There is 1 error\n' + 'Invalid email address.',
-  passwordRequiredErrorMessage: 'There is 1 error\n' + 'Password is required.',
+  authenticationFailedErrorMessage: 'There is 1 error\n' + '\nAuthentication failed.',
+  invalidEmailErrorMessage: 'There is 1 error\n' + '\nInvalid email address.',
+  passwordRequiredErrorMessage: 'There is 1 error\n' + '\nPassword is required.',
 };
 
 export {errorMessages};
