@@ -18,10 +18,6 @@ Runs all feature file which contain `@Test`
 ## Visual Studio Code project setup
 In your [Visual Studio Code](https://code.visualstudio.com/) download the extension *Cucumber (Gherkin) Full support* and restart your IDE. Aferwards, you should be able to navigate from your feature files to your steps by clicking on the Given/When/Then.
 
-## Jenkins setup
-* Sample Jenkins that runs the project can be found here: http://qalabs.ecx.local:8080/job/WebdriverIO/
-* Also includes a sample Allure report for Jenkins: http://qalabs.ecx.local:8080/job/WebdriverIO/allure/#
-
 ## Page Objects
 
 [Page Objects](https://martinfowler.com/bliki/PageObject.html) are a really nifty abstraction for the UI elements that you interact with in your tests. You can create simple getter functions for each element that you need to access. And optionally you can create convenience methods like `loginWithCredentials()` that allow you to write more concise tests. 
