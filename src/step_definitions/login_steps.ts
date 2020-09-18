@@ -1,3 +1,4 @@
+export {};
 import {Given, Then, When} from 'cucumber';
 import {testingData} from 'src/constants/testingData';
 import {ErrorMessageType} from 'src/enums/ErrorMessageType';

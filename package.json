@@ -1,7 +1,7 @@
 {
-  "name": "webdriverio_v5_typescript",
+  "name": "webdriverio_v6_typescript",
   "version": "1.0.0",
-  "description": "Boilerplate project using version 5 WebdriverIO & TypeScript.",
+  "description": "Boilerplate project using version 6 WebdriverIO & TypeScript.",
   "repository": "https://github.com/jpolley/WebdriverIO_v5_TypeScript",
   "scripts": {
     "test": "wdio",
@@ -28,10 +28,10 @@
     "allure-commandline": "^2.13.0",
     "chai": "^4.2.0",
     "chromedriver": "^85.0.1",
-    "ts-node": "^7.0.1",
+    "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.3",
+    "typescript": "^4.0.2",
     "wdio-chromedriver-service": "^6.0.4",
     "webdriverio": "^6.4.7"
   }

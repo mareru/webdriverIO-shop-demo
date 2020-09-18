@@ -1,4 +1,7 @@
 const testingData = {
+  skuLabel(productId: number) {
+    return 'demo_' + productId;
+  },
   email: 'ecx@test.com',
   invalidPassword: 'test',
   invalidPasswordErrorMessage: 'Invalid password',

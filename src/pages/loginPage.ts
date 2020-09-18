@@ -1,3 +1,4 @@
+export {};
 import {expect} from 'chai';
 import {errorMessages} from 'src/constants/errorMessages';
 import {expectMessages} from 'src/constants/expectMessages';

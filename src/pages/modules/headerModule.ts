@@ -1,3 +1,4 @@
+export {};
 import {expect} from 'chai';
 import {testingData} from 'src/constants/testingData';
 

@@ -4,5 +4,6 @@ declare namespace WebdriverIO {
     // tslint:disable-next-line:interface-name
     interface Browser {
         browserCustomCommandExample: (arg) => void;
+        waitUntilListIsDisplayed: (elements: ElementArray, length: number, timeout: number) => void;
     }
 }
