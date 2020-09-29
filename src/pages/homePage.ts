@@ -1,4 +1,3 @@
-export {};
 import {expect} from 'chai';
 import {expectMessages} from 'src/constants/expectMessages';
 import {testingData} from 'src/constants/testingData';
@@ -23,7 +22,7 @@ class HomePage extends Page {
     header.contactPhoneNumberIsDisplayed();
   }
 
-  clickLastProductImage(productId) {
+  clickLastProductImage(productId: number) {
     browser.waitUntilListIsDisplayed(this.popularProducts, productId, 10000);
     this.popularProductMoreButton(productId).click();
   }

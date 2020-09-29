@@ -1,8 +1,6 @@
-/* tslint:disable:object-literal-sort-keys */
-import {IEcxConfig} from 'src/config/ecx-config';
 import {commandsFactory} from './config/commands';
 
-const config: IEcxConfig = {
+const config: WebdriverIO.Config = {
   //
   // ====================
   // Runner Configuration
@@ -10,7 +8,7 @@ const config: IEcxConfig = {
   //
   // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
   // on a remote machine).
-  runner: 'local',
+  // runner: 'local',
 
   //
   // ==================
@@ -115,9 +113,10 @@ const config: IEcxConfig = {
   cucumberOpts: {
     requireModule: [
       'tsconfig-paths/register',
-      () => {
-        require('ts-node').register({files: true});
-      },
+      // @ts-ignore
+      // () => {
+      //   require('ts-node').register({files: true});
+      // },
     ],
     // <boolean> show full backtrace for errors
     backtrace: false,
@@ -192,12 +191,10 @@ const config: IEcxConfig = {
   // before: function (capabilities, specs) {
   // },
   before(capabilities, specs) {
-    // require('ts-node/register');
-    require('ts-node').register({files: true});
     const commands = commandsFactory({waitForTimeout: this.waitforTimeout});
 
-    const chai = require('chai');
-    global.should = chai.should();
+    // const chai = require('chai');
+    // global.should = chai.should();
 
     // browser.maximizeWindow();
 
@@ -239,11 +236,11 @@ const config: IEcxConfig = {
    */
   // afterStep: function (uri, feature, { error, result, duration, passed }, stepData, context) {
   // },
-  afterStep(uri, feature, scenario: {error: boolean}) {
-    if (scenario.error) {
-      browser.takeScreenshot();
-    }
-  },
+  // afterStep(uri, feature, scenario: {error: boolean}) {
+  //   if (scenario.error) {
+  //     browser.takeScreenshot();
+  //   }
+  // },
   /**
    * Runs after a Cucumber scenario
    */
