@@ -1,10 +1,9 @@
 import {expect} from 'chai';
-import {errorMessages} from 'src/constants/errorMessages';
-import {expectMessages} from 'src/constants/expectMessages';
-import {testingData} from 'src/constants/testingData';
-import {ErrorMessageType} from 'src/enums/ErrorMessageType';
+import {errorMessages} from 'src/constants/error-messages';
+import {expectMessages} from 'src/constants/expect-messages';
+import {testingData} from 'src/constants/testing-data';
+import {ErrorMessageType} from 'src/enums/error-message-type';
 import {Page} from './page';
-export {};
 
 class LoginPage extends Page {
 

@@ -1,7 +1,7 @@
 import {Then} from 'cucumber';
 import {When} from 'cucumber';
-import {homePage} from 'src/pages/homePage';
-import {productDetailPage} from 'src/pages/productDetailPage';
+import {homePage} from 'src/pages/home-page';
+import {productDetailPage} from 'src/pages/product-detail-page';
 
 When(/^I click on the last product in the list$/, () => {
   homePage.clickLastProductImage(7);

@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {testingData} from 'src/constants/testingData';
+import {testingData} from 'src/constants/testing-data';
 
 class HeaderModule {
 

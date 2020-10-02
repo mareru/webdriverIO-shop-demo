@@ -1,6 +1,6 @@
 import {expect} from 'chai';
-import {expectMessages} from 'src/constants/expectMessages';
-import {testingData} from 'src/constants/testingData';
+import {expectMessages} from 'src/constants/expect-messages';
+import {testingData} from 'src/constants/testing-data';
 import {Page} from 'src/pages/page';
 
 class ProductDetailPage extends Page {

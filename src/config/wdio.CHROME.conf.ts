@@ -1,5 +1,5 @@
 import { config } from './wdio.conf'
-import { CHROME_ARGS } from './chromeArgs'
+import { CHROME_ARGS } from './chrome-args'
 
 const seleniumConfig = {
     version: '3.141.59',
