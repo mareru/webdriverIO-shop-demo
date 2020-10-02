@@ -1,6 +1,6 @@
-import {commandsFactory} from './config/commands';
+import {commandsFactory} from './commands';
 
-const config: WebdriverIO.Config = {
+export const config: WebdriverIO.Config = {
   //
   // ====================
   // Runner Configuration
@@ -90,7 +90,14 @@ const config: WebdriverIO.Config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ['selenium-standalone'],
+  services: [
+    [
+      'selenium-standalone',
+      {
+        logs: 'logs'
+      }
+    ]
+  ],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -111,13 +118,6 @@ const config: WebdriverIO.Config = {
   // If you are using Cucumber you need to specify the location of your step
   // definitions.
   cucumberOpts: {
-    requireModule: [
-      'tsconfig-paths/register',
-      // @ts-ignore
-      // () => {
-      //   require('ts-node').register({files: true});
-      // },
-    ],
     // <boolean> show full backtrace for errors
     backtrace: false,
     // <boolean< Treat ambiguous definitions as errors
@@ -300,5 +300,3 @@ const config: WebdriverIO.Config = {
   // onReload: function(oldSessionId, newSessionId) {
   // }
 };
-
-export { config };

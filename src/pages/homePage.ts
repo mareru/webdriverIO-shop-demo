@@ -14,7 +14,7 @@ class HomePage extends Page {
   }
 
   popularProductMoreButton(productId: number): WebdriverIO.Element {
-    return $('#homefeatured.product_list a.button.lnk_view[href*="id_product="' + productId + '"]');
+    return $('#homefeatured.product_list a.button.lnk_view[href*="id_product=' + productId + '"]');
   }
 
   verify() {
