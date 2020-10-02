@@ -20,7 +20,8 @@ export const config: WebdriverIO.Config = {
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
   specs: [
-    // './src/features/**/*.feature',
+    './src/features/**/*.feature',
+    './src/features/login.feature',
     './src/features/dashboard.feature'
   ],
   // Patterns to exclude.
@@ -193,10 +194,8 @@ export const config: WebdriverIO.Config = {
   before(capabilities, specs) {
     const commands = commandsFactory({waitForTimeout: this.waitforTimeout});
 
-    // const chai = require('chai');
-    // global.should = chai.should();
-
-    // browser.maximizeWindow();
+    const chai = require('chai');
+    global.should = chai.should();
 
     // Sample command
     function browserCustomCommandExample(text) {

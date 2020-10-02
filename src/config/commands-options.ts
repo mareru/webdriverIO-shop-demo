@@ -1,3 +1,3 @@
-export interface ICommandsOptions {
+export interface CommandsOptions {
   waitForTimeout?: number;
 }

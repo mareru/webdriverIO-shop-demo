@@ -1,6 +1,6 @@
-import {ICommandsOptions} from 'src/config/commands-options';
+import {CommandsOptions} from 'src/config/commands-options';
 
-export const commandsFactory = (options: ICommandsOptions) => {
+export const commandsFactory = (options: CommandsOptions) => {
   const commands = {
     waitUntilListIsDisplayed: (elements, length, timeout) => {
       browser.waitUntil(() => {
