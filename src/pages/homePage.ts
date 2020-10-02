@@ -13,7 +13,11 @@ class HomePage extends Page {
     return $$('#homefeatured.product_list .product-image-container');
   }
 
-  popularProductMoreButton(productId: number): WebdriverIO.Element {
+  productImage(productId: number): WebdriverIO.Element {
+    return $('#homefeatured.product_list a.product_img_link[href*="id_product=' + productId + '"]');
+  }
+
+  moreButton(productId: number): WebdriverIO.Element {
     return $('#homefeatured.product_list a.button.lnk_view[href*="id_product=' + productId + '"]');
   }
 
@@ -23,14 +27,15 @@ class HomePage extends Page {
   }
 
   clickLastProductImage(productId: number) {
+    const productImage = this.productImage(productId);
+    const moreButton = this.moreButton(productId);
+
     browser.waitUntilListIsDisplayed(this.popularProducts, productId, 10000);
-    const element = this.popularProductMoreButton(productId);
-    console.log("in view port", element.isDisplayedInViewport());
-    // element.scrollIntoView();
-    element.moveTo();
-    console.log("in view port", element.isDisplayedInViewport());
-    element.waitForDisplayed();
-    element.click();
+    productImage.scrollIntoView();
+    productImage.moveTo();
+
+    moreButton.waitForDisplayed();
+    moreButton.click();
   }
 }
 
