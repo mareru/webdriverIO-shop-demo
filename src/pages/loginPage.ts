@@ -24,8 +24,12 @@ class LoginPage extends Page {
     return $('.navigation_page');
   }
 
-  get errorMessage() {
-    return $('#center_column > div:first-of-type');
+  get headerErrorMessage() {
+    return $('#center_column > div.alert-danger p');
+  }
+
+  get itemErrorMessage() {
+    return $('#center_column > div.alert-danger li');
   }
 
   verify() {
@@ -68,18 +72,23 @@ class LoginPage extends Page {
   }
 
   errorMessageIsVisible(type: ErrorMessageType) {
-    const errorMessage = this.errorMessage;
+    const headerErrorMessage = this.headerErrorMessage;
+    const itemErrorMessage = this.itemErrorMessage;
+
     switch (type) {
       case ErrorMessageType.Authentication: {
-        expect(errorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
+        expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+        expect(itemErrorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
         break;
       }
       case ErrorMessageType.InvalidEmail: {
-        expect(errorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
+        expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+        expect(itemErrorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
         break;
       }
       case ErrorMessageType.RequiredPassword: {
-        expect(errorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
+        expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+        expect(itemErrorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
         break;
       }
       default: {
