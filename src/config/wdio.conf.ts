@@ -21,8 +21,8 @@ export const config: WebdriverIO.Config = {
   //
   specs: [
     './src/features/**/*.feature',
-    './src/features/login.feature',
-    './src/features/dashboard.feature'
+    // './src/features/login.feature',
+    // './src/features/dashboard.feature'
   ],
   // Patterns to exclude.
   exclude: [
