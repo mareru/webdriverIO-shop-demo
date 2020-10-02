@@ -2,7 +2,6 @@ import {expect} from 'chai';
 import {expectMessages} from 'src/constants/expectMessages';
 import {testingData} from 'src/constants/testingData';
 import {Page} from 'src/pages/page';
-export {};
 
 class ProductDetailPage extends Page {
   get skuLabel() {
