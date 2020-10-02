@@ -1,10 +1,10 @@
 export {};
-import {Given, Then, When} from 'cucumber';
-import {testingData} from 'src/constants/testing-data';
-import {ErrorMessageType} from 'src/enums/error-message-type';
-import {homePage} from 'src/pages/home-page';
-import {header} from 'src/pages/modules/header-module';
-import {loginPage} from '../pages/login-page';
+import { Given, Then, When } from 'cucumber';
+import { testingData } from 'src/constants/testing-data';
+import { ErrorMessageType } from 'src/enums/error-message-type';
+import { homePage } from 'src/pages/home-page';
+import { header } from 'src/pages/modules/header-module';
+import { loginPage } from '../pages/login-page';
 
 Given(/^I visit home page$/, () => {
   homePage.open();

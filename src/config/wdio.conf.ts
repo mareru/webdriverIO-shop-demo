@@ -1,4 +1,4 @@
-import {commandsFactory} from './commands';
+import { commandsFactory } from './commands-factory';
 
 export const config: WebdriverIO.Config = {
   //
@@ -95,9 +95,9 @@ export const config: WebdriverIO.Config = {
     [
       'selenium-standalone',
       {
-        logs: 'logs'
-      }
-    ]
+        logs: 'logs',
+      },
+    ],
   ],
 
   // Framework you want to run your specs with.
@@ -111,10 +111,16 @@ export const config: WebdriverIO.Config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter.html
-  reporters: ['spec', ['allure', {
-    outputDir: 'allure-results',
-    disableWebdriverStepsReporting: true,
-  }]],
+  reporters: [
+    'spec',
+    [
+      'allure',
+      {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+      },
+    ],
+  ],
 
   // If you are using Cucumber you need to specify the location of your step
   // definitions.
@@ -192,8 +198,9 @@ export const config: WebdriverIO.Config = {
   // before: function (capabilities, specs) {
   // },
   before(capabilities, specs) {
-    const commands = commandsFactory({waitForTimeout: this.waitforTimeout});
+    const commands = commandsFactory({ waitForTimeout: this.waitforTimeout });
 
+    /* eslint-disable */
     const chai = require('chai');
     global.should = chai.should();
 

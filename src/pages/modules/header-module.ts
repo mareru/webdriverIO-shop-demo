@@ -1,8 +1,7 @@
-import {expect} from 'chai';
-import {testingData} from 'src/constants/testing-data';
+import { expect } from 'chai';
+import { testingData } from 'src/constants/testing-data';
 
 class HeaderModule {
-
   get signOutButton() {
     return $('a[title="Log me out"]');
   }

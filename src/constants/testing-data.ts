@@ -1,5 +1,5 @@
 const testingData = {
-  skuLabel(productId: number) {
+  skuLabel(productId: number): string {
     return 'demo_' + productId;
   },
   email: 'ecx@test.com',
@@ -9,10 +9,10 @@ const testingData = {
   navigationAuthentication: 'Authentication',
   pageTitles: {
     homePageTile: 'My Store',
-    loginPageTitle: 'Login - My Store'
+    loginPageTitle: 'Login - My Store',
   },
   phoneNumber: '0123-456-789',
-  validPassword: '12345'
+  validPassword: '12345',
 };
 
-export {testingData};
+export { testingData };

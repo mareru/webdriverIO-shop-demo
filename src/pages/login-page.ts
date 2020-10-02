@@ -1,12 +1,11 @@
-import {expect} from 'chai';
-import {errorMessages} from 'src/constants/error-messages';
-import {expectMessages} from 'src/constants/expect-messages';
-import {testingData} from 'src/constants/testing-data';
-import {ErrorMessageType} from 'src/enums/error-message-type';
-import {Page} from './page';
+import { expect } from 'chai';
+import { errorMessages } from 'src/constants/error-messages';
+import { expectMessages } from 'src/constants/expect-messages';
+import { testingData } from 'src/constants/testing-data';
+import { ErrorMessageType } from 'src/enums/error-message-type';
+import { Page } from './page';
 
 class LoginPage extends Page {
-
   get loginButton() {
     return $('#SubmitLogin > span');
   }

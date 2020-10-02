@@ -1,8 +1,8 @@
-import {expect} from 'chai';
-import {expectMessages} from 'src/constants/expect-messages';
-import {testingData} from 'src/constants/testing-data';
-import {header} from 'src/pages/modules/header-module';
-import {Page} from 'src/pages/page';
+import { expect } from 'chai';
+import { expectMessages } from 'src/constants/expect-messages';
+import { testingData } from 'src/constants/testing-data';
+import { header } from 'src/pages/modules/header-module';
+import { Page } from 'src/pages/page';
 
 class HomePage extends Page {
   open() {

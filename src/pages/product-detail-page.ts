@@ -1,7 +1,7 @@
-import {expect} from 'chai';
-import {expectMessages} from 'src/constants/expect-messages';
-import {testingData} from 'src/constants/testing-data';
-import {Page} from 'src/pages/page';
+import { expect } from 'chai';
+import { expectMessages } from 'src/constants/expect-messages';
+import { testingData } from 'src/constants/testing-data';
+import { Page } from 'src/pages/page';
 
 class ProductDetailPage extends Page {
   get skuLabel() {

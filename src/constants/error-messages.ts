@@ -5,4 +5,4 @@ const errorMessages = {
   passwordRequiredErrorMessage: 'Password is required.',
 };
 
-export {errorMessages};
+export { errorMessages };
