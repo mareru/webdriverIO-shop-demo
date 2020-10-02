@@ -4,11 +4,11 @@
   "description": "Boilerplate project using version 6 WebdriverIO & TypeScript.",
   "repository": "https://github.com/jpolley/WebdriverIO_v5_TypeScript",
   "scripts": {
-    "test": "wdio",
-    "test:qalabs": "wdio wdio.jenkins.conf.js",
-    "lint": "tslint --fix 'test/**/*.ts' && tslint --fix 'src/**/*.ts'",
+    "lint": "eslint --ext .ts --ignore-path .gitignore .",
     "report": "allure generate ./allure-results --clean && allure open",
-    "report-ci": "allure generate allure-results --clean -o allure-report"
+    "report-ci": "allure generate allure-results --clean -o allure-report",
+    "test": "wdio ./wdio.conf.js",
+    "test:headless": "npm run test -- --headless"
   },
   "author": "Jeremy Polley",
   "license": "ISC",

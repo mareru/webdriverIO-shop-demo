@@ -24,7 +24,13 @@ class HomePage extends Page {
 
   clickLastProductImage(productId: number) {
     browser.waitUntilListIsDisplayed(this.popularProducts, productId, 10000);
-    this.popularProductMoreButton(productId).click();
+    const element = this.popularProductMoreButton(productId);
+    console.log("in view port", element.isDisplayedInViewport());
+    // element.scrollIntoView();
+    element.moveTo();
+    console.log("in view port", element.isDisplayedInViewport());
+    element.waitForDisplayed();
+    element.click();
   }
 }
 
