@@ -20,5 +20,21 @@ export const commandsFactory = (options: CommandsOptions): CommandsFunctions => 
         }
       );
     },
+    waitUntilTitleIsDisplayed: (expectedTitle: string, timeout: number) => {
+      browser.waitUntil(
+        () => {
+          return browser.getTitle() === expectedTitle;
+        },
+        {
+          timeout,
+          timeoutMsg:
+            'Expected browser title to be ' +
+            expectedTitle +
+            'after ' +
+            utils.calculateTimeoutForMsg(options, timeout) +
+            'ms',
+        }
+      );
+    },
   };
 };

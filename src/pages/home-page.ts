@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { expectMessages } from 'src/constants/expect-messages';
 import { testingData } from 'src/constants/testing-data';
+import { TIMEOUT_10000_MS } from 'src/constants/timeouts';
 import { header } from 'src/pages/modules/header-module';
 import { Page } from 'src/pages/page';
 
@@ -30,7 +31,7 @@ class HomePage extends Page {
     const productImage = this.productImage(productId);
     const moreButton = this.moreButton(productId);
 
-    browser.waitUntilListIsDisplayed(this.popularProducts, productId, 10000);
+    browser.waitUntilListIsDisplayed(this.popularProducts, productId, TIMEOUT_10000_MS);
     productImage.scrollIntoView();
     productImage.moveTo();
 

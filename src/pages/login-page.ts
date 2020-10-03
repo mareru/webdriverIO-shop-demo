@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { errorMessages } from 'src/constants/error-messages';
 import { expectMessages } from 'src/constants/expect-messages';
 import { testingData } from 'src/constants/testing-data';
+import { TIMEOUT_5000_MS } from 'src/constants/timeouts';
 import { ErrorMessageType } from 'src/enums/error-message-type';
 import { Page } from './page';
 
@@ -31,6 +32,7 @@ class LoginPage extends Page {
   }
 
   verify() {
+    browser.waitUntilTitleIsDisplayed(testingData.pageTitles.loginPageTitle, TIMEOUT_5000_MS);
     expect(browser.getTitle(), expectMessages.incorrectTitle).to.contain(testingData.pageTitles.loginPageTitle);
     this.loginButtonIsDisplayed();
     this.authenticationBreadcrumbIsDisplayed();
