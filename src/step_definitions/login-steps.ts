@@ -40,7 +40,7 @@ When(/^I enter valid credentials$/, () => {
 });
 
 Then(/^I can see my username displayed on the page$/, () => {
-  header.loggedInUser.getText().includes(testingData.loggedInUser).should.be.true;
+  expect(header.loggedInUser.getText().includes(testingData.loggedInUser)).to.be.true;
 });
 
 When(/^I enter invalid username (.*) or password (.*)$/, (username, password) => {
