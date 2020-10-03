@@ -1,8 +1,8 @@
-# WebdriverIO_v5_TypeScript
+# WebdriverIO_v6_TypeScript
 
-This is a project that uses WebdriverIO v5 and TypeScript v3.   
+This is a project that uses WebdriverIO v6 and TypeScript v4.   
 It is used for examples in tutorial on webdriverIO.   
-It includes examples of the PageObject pattern and some practical examples for using WebdriverIO to build an automated test suite with Cucumber & Chai.
+It includes examples of the PageObject pattern, and some practical examples for using WebdriverIO to build an automated test suite with Cucumber & Chai.
 
 ## Getting Started
 ```
@@ -24,21 +24,6 @@ In your [Visual Studio Code](https://code.visualstudio.com/) download the extens
  
 ## Reporters
 This projects uses both the [spec-reporter](https://webdriver.io/docs/spec-reporter.html) and [allure-reporter](https://webdriver.io/docs/allure-reporter.html). The spec reporter offers great feedback when running from terminal and the allure reporter provides you with a nice report and screenshots that are automatically attached to failed tests. After running your the tests, run `npm run report` to generate the allure report. It's nifty. 
-
-
-## Visual Page Comparison with Applitools 
-You can send images of websites to Applitools where an image comparison is being executed with an AI.
-Register at Applitools and you will get an API key which looks like: "nwy8wbybx8fuqNnE3L6WsHL0KLxw0T97r4Pg5103QCN283"
-
-In case you want to run those tests firstly set the api key and set the enabled to `true` in the index.ts file:
-##### `src/config/applitools.ts` 
-```typescript
-  applitools: {
-    enabled: true,
-    key: 'add your key here'
-  }
-```
-If this key is not set the Image comparison tests will not trigger.
 
 ## Creating custom commands
 You can create your custom commands. 

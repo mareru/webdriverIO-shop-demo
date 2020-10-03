@@ -1,8 +1,4 @@
-import { expect } from 'chai';
-import { expectMessages } from 'src/constants/expect-messages';
-import { testingData } from 'src/constants/testing-data';
 import { TIMEOUT_10000_MS } from 'src/constants/timeouts';
-import { header } from 'src/pages/modules/header-module';
 import { Page } from 'src/pages/page';
 
 class HomePage extends Page {
@@ -20,11 +16,6 @@ class HomePage extends Page {
 
   moreButton(productId: number): WebdriverIO.Element {
     return $('#homefeatured.product_list a.button.lnk_view[href*="id_product=' + productId + '"]');
-  }
-
-  verify() {
-    expect(browser.getTitle(), expectMessages.incorrectTitle).to.contain(testingData.pageTitles.homePageTile);
-    header.contactPhoneNumberIsDisplayed();
   }
 
   clickLastProductImage(productId: number) {

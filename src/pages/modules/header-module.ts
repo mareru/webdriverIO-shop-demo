@@ -1,6 +1,3 @@
-import { expect } from 'chai';
-import { testingData } from 'src/constants/testing-data';
-
 class HeaderModule {
   get signOutButton() {
     return $('a[title="Log me out"]');
@@ -30,17 +27,6 @@ class HeaderModule {
     signInButton.isDisplayed().should.be.true;
     signInButton.waitForClickable();
     signInButton.click();
-  }
-
-  contactPhoneNumberIsDisplayed() {
-    const phoneNumber = this.phoneNumber;
-    phoneNumber.waitForDisplayed();
-    expect(phoneNumber.isDisplayed(), 'Contact phone number is not displayed').to.be.true;
-    expect(phoneNumber.getText(), 'Contact phone number is not correct').to.contain(testingData.phoneNumber);
-  }
-
-  isLoggedInWithUser(username: string) {
-    this.loggedInUser.getText().includes(username).should.be.true;
   }
 }
 

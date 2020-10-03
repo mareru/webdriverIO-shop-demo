@@ -1,19 +1,36 @@
-export {};
+import { expect } from 'chai';
 import { Given, Then, When } from 'cucumber';
+import { errorMessages } from 'src/constants/error-messages';
+import { expectMessages } from 'src/constants/expect-messages';
 import { testingData } from 'src/constants/testing-data';
-import { ErrorMessageType } from 'src/enums/error-message-type';
+import { TIMEOUT_5000_MS } from 'src/constants/timeouts';
 import { homePage } from 'src/pages/home-page';
 import { header } from 'src/pages/modules/header-module';
 import { loginPage } from '../pages/login-page';
 
 Given(/^I visit home page$/, () => {
   homePage.open();
-  homePage.verify();
+  expect(browser.getTitle(), expectMessages.incorrectTitle).to.contain(testingData.pageTitles.homePageTile);
+
+  const phoneNumber = header.phoneNumber;
+  phoneNumber.waitForDisplayed();
+  expect(phoneNumber.isDisplayed(), 'Contact phone number is not displayed').to.be.true;
+  expect(phoneNumber.getText(), 'Contact phone number is not correct').to.contain(testingData.phoneNumber);
 });
 
 When(/^I navigate to login page$/, () => {
   header.clickOnSignInButton();
-  loginPage.verify();
+  browser.waitUntilTitleIsDisplayed(testingData.pageTitles.loginPageTitle, TIMEOUT_5000_MS);
+  expect(browser.getTitle(), expectMessages.incorrectTitle).to.contain(testingData.pageTitles.loginPageTitle);
+
+  const loginButton = loginPage.loginButton;
+  loginButton.waitForDisplayed();
+  loginButton.isDisplayed().should.be.true;
+
+  const navigationBreadcrumb = loginPage.navigationBreadcrumb;
+  navigationBreadcrumb.waitForDisplayed();
+  navigationBreadcrumb.isDisplayed().should.be.true;
+  navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
 });
 
 When(/^I enter valid credentials$/, () => {
@@ -23,7 +40,7 @@ When(/^I enter valid credentials$/, () => {
 });
 
 Then(/^I can see my username displayed on the page$/, () => {
-  header.isLoggedInWithUser(testingData.loggedInUser);
+  header.loggedInUser.getText().includes(testingData.loggedInUser).should.be.true;
 });
 
 When(/^I enter invalid username (.*) or password (.*)$/, (username, password) => {
@@ -33,8 +50,8 @@ When(/^I enter invalid username (.*) or password (.*)$/, (username, password) =>
 });
 
 Then(/^I can see Authentication error message$/, () => {
-  // loginPage.authenticationErrorMessageIsVisible();
-  loginPage.errorMessageIsVisible(ErrorMessageType.Authentication);
+  expect(loginPage.headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+  expect(loginPage.itemErrorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
 });
 Then(/^I can successfully log out$/, () => {
   header.clickOnSignOutButton();
@@ -46,8 +63,8 @@ When(/^I enter invalid email (.*) as username$/, (email) => {
 });
 
 Then(/^I can see Invalid email address error message$/, () => {
-  // loginPage.invalidEmailErrorMessageIsVisible();
-  loginPage.errorMessageIsVisible(ErrorMessageType.InvalidEmail);
+  expect(loginPage.headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+  expect(loginPage.itemErrorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
 });
 
 When(/^I enter valid email$/, () => {
@@ -60,6 +77,6 @@ When(/^I do not enter password$/, () => {
 });
 
 Then(/^I can see Password is required error message$/, () => {
-  // loginPage.passwordRequiredErrorMessageIsVisible();
-  loginPage.errorMessageIsVisible(ErrorMessageType.RequiredPassword);
+  expect(loginPage.headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+  expect(loginPage.itemErrorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
 });

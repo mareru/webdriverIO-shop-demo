@@ -1,9 +1,3 @@
-import { expect } from 'chai';
-import { errorMessages } from 'src/constants/error-messages';
-import { expectMessages } from 'src/constants/expect-messages';
-import { testingData } from 'src/constants/testing-data';
-import { TIMEOUT_5000_MS } from 'src/constants/timeouts';
-import { ErrorMessageType } from 'src/enums/error-message-type';
 import { Page } from './page';
 
 class LoginPage extends Page {
@@ -31,13 +25,6 @@ class LoginPage extends Page {
     return $('#center_column > div.alert-danger li');
   }
 
-  verify() {
-    browser.waitUntilTitleIsDisplayed(testingData.pageTitles.loginPageTitle, TIMEOUT_5000_MS);
-    expect(browser.getTitle(), expectMessages.incorrectTitle).to.contain(testingData.pageTitles.loginPageTitle);
-    this.loginButtonIsDisplayed();
-    this.authenticationBreadcrumbIsDisplayed();
-  }
-
   typeUsername(username: string) {
     const emailField = this.emailField;
     emailField.waitForDisplayed();
@@ -57,57 +44,6 @@ class LoginPage extends Page {
     loginButton.waitForDisplayed();
     loginButton.click();
   }
-
-  authenticationBreadcrumbIsDisplayed() {
-    const navigationBreadcrumb = this.navigationBreadcrumb;
-    navigationBreadcrumb.waitForDisplayed();
-    navigationBreadcrumb.isDisplayed().should.be.true;
-    navigationBreadcrumb.getText().should.be.equal(testingData.navigationAuthentication);
-  }
-
-  loginButtonIsDisplayed() {
-    const loginButton = this.loginButton;
-    loginButton.waitForDisplayed();
-    loginButton.isDisplayed().should.be.true;
-  }
-
-  errorMessageIsVisible(type: ErrorMessageType) {
-    const headerErrorMessage = this.headerErrorMessage;
-    const itemErrorMessage = this.itemErrorMessage;
-
-    switch (type) {
-      case ErrorMessageType.Authentication: {
-        expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
-        expect(itemErrorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
-        break;
-      }
-      case ErrorMessageType.InvalidEmail: {
-        expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
-        expect(itemErrorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
-        break;
-      }
-      case ErrorMessageType.RequiredPassword: {
-        expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
-        expect(itemErrorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
-        break;
-      }
-      default: {
-        throw new TypeError('Unsupported type of error message');
-      }
-    }
-  }
-
-  // authenticationErrorMessageIsVisible() {
-  //   expect(this.errorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
-  // }
-  //
-  // invalidEmailErrorMessageIsVisible() {
-  //   expect(this.errorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
-  // }
-  //
-  // passwordRequiredErrorMessageIsVisible() {
-  //   expect(this.errorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
-  // }
 }
 
 export const loginPage = new LoginPage();
