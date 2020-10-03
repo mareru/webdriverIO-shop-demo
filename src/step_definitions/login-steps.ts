@@ -43,28 +43,19 @@ Then(/^I can see my username displayed on the page$/, () => {
   expect(header.loggedInUser.getText().includes(testingData.loggedInUser)).to.be.true;
 });
 
-When(/^I enter invalid username (.*) or password (.*)$/, (username, password) => {
+When(/^I enter invalid username "([^"]*)" or password "([^"]*)"$/, (username: string, password: string) => {
   loginPage.typeUsername(username);
   loginPage.typePassword(password);
   loginPage.clickOnLoginButton();
 });
 
-Then(/^I can see Authentication error message$/, () => {
-  expect(loginPage.headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
-  expect(loginPage.itemErrorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
-});
 Then(/^I can successfully log out$/, () => {
   header.clickOnSignOutButton();
 });
 
-When(/^I enter invalid email (.*) as username$/, (email) => {
+When(/^I enter invalid email "([^"]*)" as username$/, (email: string) => {
   loginPage.typeUsername(email);
   loginPage.clickOnLoginButton();
-});
-
-Then(/^I can see Invalid email address error message$/, () => {
-  expect(loginPage.headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
-  expect(loginPage.itemErrorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
 });
 
 When(/^I enter valid email$/, () => {
@@ -76,7 +67,28 @@ When(/^I do not enter password$/, () => {
   loginPage.clickOnLoginButton();
 });
 
-Then(/^I can see Password is required error message$/, () => {
-  expect(loginPage.headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
-  expect(loginPage.itemErrorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
+Then(/^I can see "([^"]*)" error message$/, (type: string) => {
+  const headerErrorMessage = loginPage.headerErrorMessage;
+  const itemErrorMessage = loginPage.itemErrorMessage;
+
+  switch (type) {
+    case 'Authentication': {
+      expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+      expect(itemErrorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
+      break;
+    }
+    case 'Invalid email address': {
+      expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+      expect(itemErrorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
+      break;
+    }
+    case 'Password is required': {
+      expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
+      expect(itemErrorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
+      break;
+    }
+    default: {
+      throw new TypeError('Unsupported type of error message');
+    }
+  }
 });

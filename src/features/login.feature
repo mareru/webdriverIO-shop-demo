@@ -7,8 +7,8 @@ Feature: Login
     When I navigate to login page
 
   Scenario Outline: Login with invalid credentials
-    And I enter invalid username <username> or password <password>
-    Then I can see Authentication error message
+    And I enter invalid username "<username>" or password "<password>"
+    Then I can see "Authentication" error message
 
     Examples:
       | username     | password |
@@ -20,8 +20,8 @@ Feature: Login
       | e@test.com   | 123456   |
 
   Scenario Outline: Login with invalid email
-    And I enter invalid email <email> as username
-    Then I can see Invalid email address error message
+    And I enter invalid email "<email>" as username
+    Then I can see "Invalid email address" error message
 
     Examples:
       | email           |
@@ -32,7 +32,7 @@ Feature: Login
   Scenario: Login without password
     And I enter valid email
     But I do not enter password
-    Then I can see Password is required error message
+    Then I can see "Password is required" error message
 
   # set at the end to avoid situation that if it fails and log out step is not executed,
   # then the app will be in bad state for other scenarios and they will fail
