@@ -7,7 +7,10 @@ It includes examples of the PageObject pattern, and some practical examples for 
 ## Getting Started
 ```
 npm install
-npm test
+npm run test:chrome
+npm run test:chrome:headless
+npm run test:firefox
+npm run test:firefox:headless
 ```
 
 ## Running test by annotation in the feature files
