@@ -8,8 +8,10 @@
     "lint:fix": "eslint --fix --ext .ts --ignore-path .gitignore .",
     "report": "allure generate ./allure-results --clean && allure open",
     "report-ci": "allure generate allure-results --clean -o allure-report",
-    "test": "wdio ./wdio.conf.js",
-    "test:headless": "npm run test -- --headless"
+    "test:chrome": "wdio ./wdio.conf.js",
+    "test:chrome:headless": "npm run test:chrome -- --headless",
+    "test:firefox": "wdio ./wdio.conf.js --firefox",
+    "test:firefox:headless": "npm run test:firefox -- --headless"
   },
   "author": "Jeremy Polley",
   "license": "ISC",
