@@ -1,6 +1,6 @@
 import { CommandsFunctions } from 'src/config/commands-functions';
 import { CommandsOptions } from 'src/config/commands-options';
-import { utils } from 'src/uitls/utils';
+import * as utils from 'src/uitls/utils';
 
 export const commandsFactory = (options: CommandsOptions): CommandsFunctions => {
   return {
