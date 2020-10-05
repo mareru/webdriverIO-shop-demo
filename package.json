@@ -2,8 +2,9 @@
   "name": "webdriverio_v6_typescript",
   "version": "1.0.0",
   "description": "Boilerplate project using version 6 WebdriverIO & TypeScript.",
-  "repository": "https://github.com/jpolley/WebdriverIO_v5_TypeScript",
+  "repository": "https://stash.ecx.io/projects/QA/repos/webdriverio-tutorial-demo",
   "scripts": {
+    "compile": "tsc --incremental",
     "lint": "eslint --ext .ts --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .ts --ignore-path .gitignore .",
     "report": "allure generate ./allure-results --clean && allure open",
@@ -13,8 +14,13 @@
     "test:firefox": "wdio ./wdio.conf.js --firefox",
     "test:firefox:headless": "npm run test:firefox -- --headless"
   },
-  "author": "Jeremy Polley",
+  "author": "Marijana Rukavina",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all --parallel compile lint"
+    }
+  },
   "devDependencies": {
     "@types/chai": "^4.2.12",
     "@types/cucumber": "^6.0.1",
@@ -26,6 +32,8 @@
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
