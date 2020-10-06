@@ -1,45 +1,45 @@
 import { Page } from './page';
 
 class LoginPage extends Page {
-  get loginButton() {
+  get loginButton(): WebdriverIO.Element {
     return $('#SubmitLogin > span');
   }
 
-  get emailField() {
+  get emailField(): WebdriverIO.Element {
     return $('#email');
   }
 
-  get passwordField() {
+  get passwordField(): WebdriverIO.Element {
     return $('#passwd');
   }
 
-  get navigationBreadcrumb() {
+  get navigationBreadcrumb(): WebdriverIO.Element {
     return $('.navigation_page');
   }
 
-  get headerErrorMessage() {
+  get headerErrorMessage(): WebdriverIO.Element {
     return $('#center_column > div.alert-danger p');
   }
 
-  get itemErrorMessage() {
+  get itemErrorMessage(): WebdriverIO.Element {
     return $('#center_column > div.alert-danger li');
   }
 
-  typeUsername(username: string) {
+  typeUsername(username: string): void {
     const emailField = this.emailField;
     emailField.waitForDisplayed();
     emailField.clearValue();
     emailField.setValue(username);
   }
 
-  typePassword(password: string) {
+  typePassword(password: string): void {
     const passwordField = this.passwordField;
     passwordField.waitForDisplayed();
     passwordField.clearValue();
     passwordField.setValue(password);
   }
 
-  clickOnLoginButton() {
+  clickOnLoginButton(): void {
     const loginButton = this.loginButton;
     loginButton.waitForDisplayed();
     loginButton.click();

@@ -2,11 +2,11 @@ import { TIMEOUT_10000_MS } from 'src/constants/timeouts';
 import { Page } from 'src/pages/page';
 
 class HomePage extends Page {
-  open() {
+  open(): void {
     super.open('/');
   }
 
-  get popularProducts() {
+  get popularProducts(): WebdriverIO.ElementArray {
     return $$('#homefeatured.product_list .product-image-container');
   }
 
@@ -18,7 +18,7 @@ class HomePage extends Page {
     return $('#homefeatured.product_list a.button.lnk_view[href*="id_product=' + productId + '"]');
   }
 
-  clickLastProductImage(productId: number) {
+  clickLastProductImage(productId: number): void {
     const productImage = this.productImage(productId);
     const moreButton = this.moreButton(productId);
 

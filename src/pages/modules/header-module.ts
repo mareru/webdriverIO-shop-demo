@@ -1,27 +1,27 @@
 class HeaderModule {
-  get signOutButton() {
+  get signOutButton(): WebdriverIO.Element {
     return $('a[title="Log me out"]');
   }
 
-  get signInButton() {
+  get signInButton(): WebdriverIO.Element {
     return $('a[title="Log in to your customer account"]');
   }
 
-  get phoneNumber() {
+  get phoneNumber(): WebdriverIO.Element {
     return $('.shop-phone');
   }
 
-  get loggedInUser() {
+  get loggedInUser(): WebdriverIO.Element {
     return $('.account > span');
   }
 
-  clickOnSignOutButton() {
+  clickOnSignOutButton(): void {
     const signOutButton = this.signOutButton;
     signOutButton.waitForDisplayed();
     signOutButton.click();
   }
 
-  clickOnSignInButton() {
+  clickOnSignInButton(): void {
     const signInButton = this.signInButton;
     signInButton.waitForDisplayed();
     signInButton.isDisplayed().should.be.true;

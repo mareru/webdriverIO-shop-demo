@@ -1,3 +1,5 @@
+import * as path from 'path';
+import * as appRoot from 'app-root-path';
 import { commandsFactory } from './commands-factory';
 
 export const config: WebdriverIO.Config = {
@@ -65,7 +67,7 @@ export const config: WebdriverIO.Config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error
-  logLevel: 'error',
+  logLevel: 'trace',
   //
   // If you only want to run your tests until a specific amount of tests have failed use
   // bail (default is 0 - don't bail, run all tests).
@@ -99,6 +101,7 @@ export const config: WebdriverIO.Config = {
       },
     ],
   ],
+  outputDir: path.join(appRoot.path, '/logs'),
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber

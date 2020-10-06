@@ -1,5 +1,5 @@
 export class Page {
-  get page() {
+  get page(): WebdriverIO.Element {
     return $('#page');
   }
 

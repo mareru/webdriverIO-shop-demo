@@ -14,7 +14,8 @@ module.exports = {
         mocha: true,
     },
     rules: {
-        '@typescript-eslint/explicit-function-return-type': 'off',
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        '@typescript-eslint/explicit-function-return-type': 2,
         '@typescript-eslint/member-delimiter-style': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
         "prettier/prettier": ["error", {
