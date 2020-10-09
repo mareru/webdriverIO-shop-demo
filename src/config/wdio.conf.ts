@@ -121,6 +121,8 @@ export const config: WebdriverIO.Config = {
       {
         outputDir: 'allure-results',
         disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+        useCucumberStepReporter: true,
       },
     ],
   ],
@@ -243,13 +245,12 @@ export const config: WebdriverIO.Config = {
   /**
    * Runs after a Cucumber step
    */
-  // afterStep: function (uri, feature, { error, result, duration, passed }, stepData, context) {
-  // },
-  // afterStep(uri, feature, scenario: {error: boolean}) {
-  //   if (scenario.error) {
-  //     browser.takeScreenshot();
-  //   }
-  // },
+
+  afterStep(step, context, {error, result, passed, duration}) {
+    if (error) {
+      browser.takeScreenshot();
+    }
+  },
   /**
    * Runs after a Cucumber scenario
    */
