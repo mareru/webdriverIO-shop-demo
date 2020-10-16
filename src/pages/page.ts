@@ -5,6 +5,7 @@ export class Page {
 
   open(path: string): void {
     browser.url(path);
+    browser.checkForJavaScriptErrors();
     this.page.waitForDisplayed();
   }
 }

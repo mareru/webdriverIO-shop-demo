@@ -10,5 +10,6 @@ When(/^I click on the "([^"]*)"th product \(the last product\) in the list$/, (p
   homePage.clickLastProductImage(Number(productId));
 });
 Then(/^Product Detail Page of the last product opens$/, () => {
+  browser.checkForJavaScriptErrors();
   expect(productDetailPage.skuLabel.getText(), expectMessages.incorrectSku).to.be.equal(testingData.skuLabel(7));
 });

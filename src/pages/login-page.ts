@@ -27,21 +27,19 @@ class LoginPage extends Page {
 
   typeUsername(username: string): void {
     const emailField = this.emailField;
-    emailField.waitForDisplayed();
-    emailField.clearValue();
+    emailField.waitForClickable();
     emailField.setValue(username);
   }
 
   typePassword(password: string): void {
     const passwordField = this.passwordField;
-    passwordField.waitForDisplayed();
-    passwordField.clearValue();
+    passwordField.waitForClickable();
     passwordField.setValue(password);
   }
 
   clickOnLoginButton(): void {
     const loginButton = this.loginButton;
-    loginButton.waitForDisplayed();
+    loginButton.waitForClickable();
     loginButton.click();
   }
 }

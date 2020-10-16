@@ -20,6 +20,7 @@ Given(/^I visit home page$/, () => {
 
 When(/^I navigate to login page$/, () => {
   header.clickOnSignInButton();
+  browser.checkForJavaScriptErrors();
   browser.waitUntilTitleIsDisplayed(testingData.pageTitles.loginPageTitle, TIMEOUT_5000_MS);
   expect(browser.getTitle(), expectMessages.incorrectTitle).to.contain(testingData.pageTitles.loginPageTitle);
 
@@ -40,6 +41,7 @@ When(/^I enter valid credentials$/, () => {
 });
 
 Then(/^I can see my username displayed on the page$/, () => {
+  browser.checkForJavaScriptErrors();
   expect(header.loggedInUser.getText().includes(testingData.loggedInUser)).to.be.true;
 });
 
@@ -68,6 +70,7 @@ When(/^I do not enter password$/, () => {
 });
 
 Then(/^I can see "([^"]*)" error message$/, (type: string) => {
+  browser.checkForJavaScriptErrors();
   const headerErrorMessage = loginPage.headerErrorMessage;
   const itemErrorMessage = loginPage.itemErrorMessage;
 

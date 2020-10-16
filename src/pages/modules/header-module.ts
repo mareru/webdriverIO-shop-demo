@@ -17,7 +17,7 @@ class HeaderModule {
 
   clickOnSignOutButton(): void {
     const signOutButton = this.signOutButton;
-    signOutButton.waitForDisplayed();
+    signOutButton.waitForClickable();
     signOutButton.click();
   }
 

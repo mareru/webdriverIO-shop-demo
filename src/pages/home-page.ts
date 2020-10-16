@@ -26,7 +26,7 @@ class HomePage extends Page {
     productImage.scrollIntoView();
     productImage.moveTo();
 
-    moreButton.waitForDisplayed();
+    moreButton.waitForClickable();
     moreButton.click();
   }
 }
