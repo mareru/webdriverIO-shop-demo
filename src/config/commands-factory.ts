@@ -52,7 +52,7 @@ export const commandsFactory = (options: CommandsOptions): CommandsFunctions => 
     },
     checkForJavaScriptErrors: function (): void {
       this.waitForPageToLoad();
-      const firefoxBrowser = process.argv.includes('--firefox');
+      const firefoxBrowser: boolean = process.argv.includes('--firefox');
       if (!firefoxBrowser) {
         const logs: any[] = browser.getLogs('browser');
         logs.forEach((log) => {
