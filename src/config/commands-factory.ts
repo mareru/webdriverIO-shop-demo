@@ -52,17 +52,20 @@ export const commandsFactory = (options: CommandsOptions): CommandsFunctions => 
     },
     checkForJavaScriptErrors: function (): void {
       this.waitForPageToLoad();
-      const logs: any[] = browser.getLogs('browser');
-      logs.forEach((log) => {
-        if (log.level.toLowerCase() === 'severe') {
-          if (log.source.toLowerCase() === 'javascript') {
-            console.error(`${log.source.toUpperCase()} ERROR: ${log.message}`);
-            expect.fail(`${log.source.toUpperCase()} ERROR: ${log.message}`);
-          } else {
-            console.log(`${log.source.toUpperCase()} ERROR: ${log.message}`);
+      const firefoxBrowser = process.argv.includes('--firefox');
+      if (!firefoxBrowser) {
+        const logs: any[] = browser.getLogs('browser');
+        logs.forEach((log) => {
+          if (log.level.toLowerCase() === 'severe') {
+            if (log.source.toLowerCase() === 'javascript') {
+              console.error(`${log.source.toUpperCase()} ERROR: ${log.message}`);
+              expect.fail(`${log.source.toUpperCase()} ERROR: ${log.message}`);
+            } else {
+              console.log(`${log.source.toUpperCase()} ERROR: ${log.message}`);
+            }
           }
-        }
-      });
+        });
+      }
     },
   };
 };
