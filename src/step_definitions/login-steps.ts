@@ -73,20 +73,18 @@ Then(/^I can see "([^"]*)" error message$/, (type: string) => {
   browser.checkForJavaScriptErrors();
   const headerErrorMessage = loginPage.headerErrorMessage;
   const itemErrorMessage = loginPage.itemErrorMessage;
+  expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
 
   switch (type) {
     case 'Authentication': {
-      expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
       expect(itemErrorMessage.getText()).to.be.equal(errorMessages.authenticationFailedErrorMessage);
       break;
     }
     case 'Invalid email address': {
-      expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
       expect(itemErrorMessage.getText()).to.be.equal(errorMessages.invalidEmailErrorMessage);
       break;
     }
     case 'Password is required': {
-      expect(headerErrorMessage.getText()).to.be.equal(errorMessages.headerErrorMessage);
       expect(itemErrorMessage.getText()).to.be.equal(errorMessages.passwordRequiredErrorMessage);
       break;
     }
