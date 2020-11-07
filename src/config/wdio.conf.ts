@@ -246,7 +246,7 @@ export const config: WebdriverIO.Config = {
    * Runs after a Cucumber step
    */
 
-  afterStep(step, context, {error, result, passed, duration}) {
+  afterStep(step, context, { error, result, passed, duration }) {
     if (error) {
       browser.takeScreenshot();
     }
