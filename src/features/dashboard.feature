@@ -1,4 +1,4 @@
-@Smoke
+@Smoke @Dashboard
 Feature: Dashboard
   Test dashboard functionalities
 

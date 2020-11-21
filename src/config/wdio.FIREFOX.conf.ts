@@ -14,12 +14,16 @@ const browserOptions: WebDriver.FirefoxOptions & { args: Array<string> } = {
   args: [...(process.argv.includes('--headless') ? ['-headless'] : []), '--width=1920', '--height=1080'],
 };
 
-const seleniumOpts = config.services?.find(
-  (service) => Array.isArray(service) && service[0] === 'selenium-standalone'
-) as SeleniumStandaloneOptions;
-
-seleniumOpts.args = { ...seleniumConfig };
-seleniumOpts.installArgs = { ...seleniumConfig };
+config.services = [
+  [
+    'selenium-standalone',
+    {
+      logs: 'logs',
+      args: seleniumConfig,
+      installArgs: seleniumConfig,
+    },
+  ],
+];
 
 const browserConfig: WebdriverIO.Config = {
   ...config,

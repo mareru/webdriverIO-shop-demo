@@ -1,4 +1,4 @@
-@Smoke
+@Smoke @Login
 Feature: Login
   Test login process
 

@@ -3,7 +3,7 @@ import { CHROME_ARGS } from './chrome-args';
 
 const seleniumConfig = {
   version: '3.141.59',
-  drivers: { chrome: { version: '85.0.4183.87' } },
+  drivers: { chrome: { version: '87.0.4280.20' } },
 };
 
 const browserOptions: WebDriver.ChromeOptions & { args: Array<string> } = {
@@ -14,12 +14,16 @@ const browserOptions: WebDriver.ChromeOptions & { args: Array<string> } = {
   ],
 };
 
-const seleniumOpts = config.services?.find(
-  (service) => Array.isArray(service) && service[0] === 'selenium-standalone'
-) as SeleniumStandaloneOptions;
-
-seleniumOpts.args = { ...seleniumConfig };
-seleniumOpts.installArgs = { ...seleniumConfig };
+config.services = [
+  [
+    'selenium-standalone',
+    {
+      logs: 'logs',
+      args: seleniumConfig,
+      installArgs: seleniumConfig,
+    },
+  ],
+];
 
 const browserConfig: WebdriverIO.Config = {
   ...config,
