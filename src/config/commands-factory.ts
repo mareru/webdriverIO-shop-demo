@@ -6,7 +6,7 @@ import * as utils from 'src/uitls/utils';
 
 export const commandsFactory = (options: CommandsOptions): CommandsFunctions => {
   return {
-    waitUntilListIsDisplayed(elements: WebdriverIO.ElementArray, length: number, timeout: number): void {
+    waitUntilListIsDisplayed: function (elements: WebdriverIO.ElementArray, length: number, timeout: number): void {
       browser.waitUntil(
         () => {
           return elements.map((element) => element.isDisplayed()).length === length;

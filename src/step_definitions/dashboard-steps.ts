@@ -1,4 +1,3 @@
-import { percySnapshot } from '@percy/webdriverio';
 import { expect } from 'chai';
 import { Then } from 'cucumber';
 import { When } from 'cucumber';
@@ -13,5 +12,4 @@ When(/^I click on the "([^"]*)"th product \(the last product\) in the list$/, (p
 Then(/^Product Detail Page of the last product opens$/, () => {
   browser.checkForJavaScriptErrors();
   expect(productDetailPage.skuLabel.getText(), expectMessages.incorrectSku).to.be.equal(testingData.skuLabel(7));
-  browser.call(() => percySnapshot(browser, 'PDP of the last product in the list'));
 });

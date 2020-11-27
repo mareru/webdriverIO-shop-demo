@@ -153,6 +153,7 @@ export const config: WebdriverIO.Config = {
     // <string[]> (file/dir) require files before executing features
     require: [
       './src/step_definitions/*.ts',
+      './src/step_definitions/visual/*.ts',
       // Or search a (sub)folder for TS files with a wildcard
       // works since version 1.1 of the wdio-cucumber-framework
       // './src/**/*.TS',
@@ -164,7 +165,7 @@ export const config: WebdriverIO.Config = {
     // <string> (expression) only execute the features or scenarios with
     // tags matching the expression, see
     // https://docs.cucumber.io/tag-expressions/
-    tagExpression: 'not @Pending',
+    tagExpression: 'not @Pending and not @Visual',
     // <boolean> add cucumber tags to feature or scenario name
     tagsInTitle: false,
     // <number> timeout for step definitions

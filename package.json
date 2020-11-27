@@ -13,9 +13,9 @@
     "test:chrome:headless": "npm run test:chrome -- --headless",
     "test:firefox": "wdio ./wdio.conf.js --firefox",
     "test:firefox:headless": "npm run test:firefox -- --headless",
-    "test:chrome:visual": "percy exec -- wdio ./wdio.conf.js",
+    "test:chrome:visual": "percy exec -- wdio ./wdio.conf.js --cucumberOpts.tagExpression=\"@Visual and not @Pending\"",
     "test:chrome:visual:headless": "npm run test:chrome:visual -- --headless",
-    "test:firefox:visual": "percy exec -- wdio ./wdio.conf.js --firefox",
+    "test:firefox:visual": "percy exec -- wdio ./wdio.conf.js --firefox --cucumberOpts.tagExpression=\"@Visual and not @Pending\"",
     "test:firefox:visual:headless": "npm run test:firefox:visual -- --headless"
   },
   "author": "Marijana Rukavina",
