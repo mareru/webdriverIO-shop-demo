@@ -13,6 +13,9 @@ const testingData = {
   },
   phoneNumber: '0123-456-789',
   validPassword: '12345',
+  productDetailPageUrl(productId: string): string {
+    return 'index.php?id_product=' + productId + '&controller=product';
+  },
 };
 
 export { testingData };

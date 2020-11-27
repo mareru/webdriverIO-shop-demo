@@ -29,6 +29,10 @@ class HomePage extends Page {
     moreButton.waitForClickable();
     moreButton.click();
   }
+
+  navigate(url: string): void {
+    super.open(url);
+  }
 }
 
 export const homePage = new HomePage();
