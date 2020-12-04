@@ -13,6 +13,15 @@ npm run test:firefox
 npm run test:firefox:headless
 ```
 
+## Chrome Browser version and Chrome Driver version
+Make sure that your Chrome browser version corresponds to the chrome driver version in 
+`wdio.CHROME.conf.ts`  
+```const seleniumConfig = {
+  version: '3.141.59',
+  drivers: { chrome: { version: '87.0.4280.20' } }, // change this version to correspond to your browser version
+};
+```
+
 ## Running test by annotation in the feature files
 
 Runs all feature file which contain `@Test`
