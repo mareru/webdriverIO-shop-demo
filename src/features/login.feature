@@ -1,4 +1,4 @@
-@Smoke
+@Smoke @Login
 Feature: Login
   Test login process
 
@@ -6,9 +6,11 @@ Feature: Login
     Given I visit home page
     When I navigate to login page
 
-  Scenario Outline: Login with invalid credentials
-    And I enter invalid username <username> or password <password>
-    Then I can see Authentication error message
+  # Make sure that scenario has unique name for each example execution
+  # Otherwise the allure report will not show all executions, only the last example execution
+  Scenario Outline: Login with invalid credentials <username>/<password>
+    And I enter invalid username "<username>" or password "<password>"
+    Then I can see "Authentication" error message
 
     Examples:
       | username     | password |
@@ -19,9 +21,9 @@ Feature: Login
       # invalid username and password
       | e@test.com   | 123456   |
 
-  Scenario Outline: Login with invalid email
-    And I enter invalid email <email> as username
-    Then I can see Invalid email address error message
+  Scenario Outline: Login with invalid email <email>
+    And I enter invalid email "<email>" as username
+    Then I can see "Invalid email address" error message
 
     Examples:
       | email           |
@@ -32,10 +34,11 @@ Feature: Login
   Scenario: Login without password
     And I enter valid email
     But I do not enter password
-    Then I can see Password is required error message
+    Then I can see "Password is required" error message
 
   # set at the end to avoid situation that if it fails and log out step is not executed,
-  # then app will be in bad state for other scenarios and they will fail
+  # then the app will be in bad state for other scenarios and they will fail
+  # not because of the error in the app but because of the illogical flow
   Scenario: Login with valid credentials
     And I enter valid credentials
     Then I can see my username displayed on the page

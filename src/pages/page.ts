@@ -1,11 +1,11 @@
 export class Page {
-
-  get page() {
+  get page(): WebdriverIO.Element {
     return $('#page');
   }
 
-  open(path) {
+  open(path: string): void {
     browser.url(path);
+    browser.checkForJavaScriptErrors();
     this.page.waitForDisplayed();
   }
 }
