@@ -1,4 +1,4 @@
-import { When } from 'cucumber';
+import { When } from '@cucumber/cucumber';
 import { testingData } from 'src/constants/testing-data';
 import { homePage } from 'src/pages/home-page';
 

@@ -3,7 +3,7 @@ import { CHROME_ARGS } from './chrome-args';
 
 const seleniumConfig = {
   version: '3.141.59',
-  drivers: { chrome: { version: '87.0.4280.20' } },
+  drivers: { chrome: { version: '90.0.4430.24' } },
 };
 
 const browserOptions: WebDriver.ChromeOptions & { args: Array<string> } = {

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Given, Then, When } from 'cucumber';
+import { Given, Then, When } from '@cucumber/cucumber';
 import { errorMessages } from 'src/constants/error-messages';
 import { expectMessages } from 'src/constants/expect-messages';
 import { testingData } from 'src/constants/testing-data';

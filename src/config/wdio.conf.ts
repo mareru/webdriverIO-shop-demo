@@ -52,14 +52,15 @@ export const config: WebdriverIO.Config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://docs.saucelabs.com/reference/platforms-configurator
   //
-  // capabilities: [{
-  //   // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-  //   // grid with only 5 firefox instances available you can make sure that not more than
-  //   // 5 instances get started at a time.
-  //   maxInstances: 1,
-  //   //
-  //   browserName: 'chrome'
-  // }],
+  capabilities: [
+    {
+      // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+      // grid with only 5 firefox instances available you can make sure that not more than
+      // 5 instances get started at a time.
+      maxInstances: 1,
+      browserName: 'chrome',
+    },
+  ],
   //
   // ===================
   // Test Configurations
@@ -247,8 +248,9 @@ export const config: WebdriverIO.Config = {
    * Runs after a Cucumber step
    */
 
-  afterStep(step, context, { error, result, passed, duration }) {
-    if (error) {
+  afterStep(step, context) {
+    // @ts-ignore
+    if (context.error) {
       browser.takeScreenshot();
     }
   },
@@ -310,4 +312,14 @@ export const config: WebdriverIO.Config = {
    */
   // onReload: function(oldSessionId, newSessionId) {
   // }
+
+  autoCompileOpts: {
+    autoCompile: true,
+    // see https://github.com/TypeStrong/ts-node#cli-and-programmatic-options
+    // for all available options
+    tsNodeOpts: {
+      transpileOnly: true,
+      project: 'tsconfig.json',
+    },
+  },
 };

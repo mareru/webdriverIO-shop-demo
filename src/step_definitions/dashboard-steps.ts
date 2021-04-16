@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import { Then } from 'cucumber';
-import { When } from 'cucumber';
+import { When, Then } from '@cucumber/cucumber';
 import { expectMessages } from 'src/constants/expect-messages';
 import { testingData } from 'src/constants/testing-data';
 import { homePage } from 'src/pages/home-page';
