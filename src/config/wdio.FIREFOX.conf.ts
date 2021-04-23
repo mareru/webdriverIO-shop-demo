@@ -1,11 +1,12 @@
 import { config } from './wdio.conf';
+import { Capabilities } from '@wdio/types';
 
 const seleniumConfig = {
   version: '3.141.59',
   drivers: { firefox: { version: '0.27.0' } },
 };
 
-const browserOptions: WebDriver.FirefoxOptions & { args: Array<string> } = {
+const browserOptions: Capabilities.FirefoxOptions = {
   prefs: {
     'browser.tabs.remote.autostart': false,
     'toolkit.telemetry.reportingpolicy.firstRun': false,

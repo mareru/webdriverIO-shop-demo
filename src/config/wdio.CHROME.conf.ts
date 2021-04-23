@@ -1,12 +1,13 @@
 import { config } from './wdio.conf';
 import { CHROME_ARGS } from './chrome-args';
+import { Capabilities } from '@wdio/types';
 
 const seleniumConfig = {
   version: '3.141.59',
   drivers: { chrome: { version: '90.0.4430.24' } },
 };
 
-const browserOptions: WebDriver.ChromeOptions & { args: Array<string> } = {
+const browserOptions: Capabilities.ChromeOptions = {
   args: [
     ...CHROME_ARGS,
     ...(process.argv.includes('--headless') ? ['--headless', '--no-sandbox'] : []),
