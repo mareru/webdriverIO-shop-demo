@@ -26,6 +26,7 @@
     }
   },
   "devDependencies": {
+    "@percy/cli": "^1.0.0-beta.48",
     "@percy/webdriverio": "^1.0.4",
     "@types/chai": "^4.2.12",
     "@types/cucumber": "^6.0.1",
